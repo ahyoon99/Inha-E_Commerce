@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import com.kftc.openbankingsample2.R;
 import com.kftc.openbankingsample2.biz.center_auth.AbstractCenterAuthMainFragment;
 import com.kftc.openbankingsample2.biz.center_auth.CenterAuthHomeFragment;
-import com.kftc.openbankingsample2.biz.self_auth.SelfAuthHomeFragment;
+// import com.kftc.openbankingsample2.biz.self_auth.SelfAuthHomeFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -58,9 +58,6 @@ public class HomeFragment extends AbstractCenterAuthMainFragment {
 
         // 센터인증
         view.findViewById(R.id.btnCenterAuth).setOnClickListener(v -> startFragment(CenterAuthHomeFragment.class, args, R.string.fragment_id_center));
-
-        // 자체인증
-        view.findViewById(R.id.btnSelfAuth).setOnClickListener(v -> startFragment(SelfAuthHomeFragment.class, args, R.string.fragment_id_self));
 
         // 하단 버전표시
         try {

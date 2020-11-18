@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 
 import com.kftc.openbankingsample2.R;
 import com.kftc.openbankingsample2.common.license.OpenLicense;
-import com.kftc.openbankingsample2.biz.self_auth.setting.SelfAuthSettingFragment;
 
 public class NaviMainFragment extends AbstractNaviFragment {
 
@@ -96,7 +95,6 @@ public class NaviMainFragment extends AbstractNaviFragment {
 
                 case R.id.rbSetting:
                     activity.closeNavi();
-                    activity.startFragment(SelfAuthSettingFragment.class, args, R.string.fragment_id_center_auth_setting);
                     break;
 
                 case R.id.rbOpenLicense:

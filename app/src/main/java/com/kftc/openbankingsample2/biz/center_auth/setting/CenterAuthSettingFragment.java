@@ -88,7 +88,6 @@ public class CenterAuthSettingFragment extends AbstractSettingFragment {
             dialog.setPositiveButton("확인", (dialog1, which) -> {
                 Utils.removePref(context);
                 PreferenceManager.setDefaultValues(context, R.xml.fragment_center_auth_setting, true);
-                PreferenceManager.setDefaultValues(context, R.xml.fragment_self_auth_setting, true);
                 AppData.centerAuthAccessTokenList.clear();
                 AppData.centerAuthBankAccountList.clear();
                 AppData.selfAuthAccessTokenList.clear();
