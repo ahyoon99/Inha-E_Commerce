@@ -76,6 +76,18 @@
                 android:layout_marginTop="15dp" />
 
             <Button
+                android:id="@+id/btnCreateQRPage"
+                style="@style/Button01"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="QR 코드 생성"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="15dp" />
+
+            <Button
                 android:id="@+id/btnTrnsDPPage"
                 style="@style/Button01"
                 android:layout_width="280dp"

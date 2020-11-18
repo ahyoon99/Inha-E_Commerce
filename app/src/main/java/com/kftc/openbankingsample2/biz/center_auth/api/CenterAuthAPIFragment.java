@@ -25,6 +25,7 @@ import com.kftc.openbankingsample2.biz.center_auth.api.transfer_deposit.CenterAu
 import com.kftc.openbankingsample2.biz.center_auth.api.transfer_result.CenterAuthAPITransferResultFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.transfer_withdraw.CenterAuthAPITransferWithdrawFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.user_me.CenterAuthAPIUserMeRequestFragment;
+import com.kftc.openbankingsample2.biz.center_auth.fragment_center_auth_create_qrcode;
 
 /**
  * API 호출 메뉴
@@ -72,6 +73,9 @@ public class CenterAuthAPIFragment extends AbstractCenterAuthMainFragment {
 
         // 출금이체
         view.findViewById(R.id.btnTrnsWDPage).setOnClickListener(v -> startFragment(CenterAuthAPITransferWithdrawFragment.class, args, R.string.fragment_id_api_call_withdraw));
+
+        // QR코드 생성
+        view.findViewById(R.id.btnCreateQRPage).setOnClickListener(v -> startFragment(fragment_center_auth_create_qrcode.class, args, R.string.fragment_create_qrcode_to_withdraw));
 
         // 입금이체(핀테크이용번호)
         view.findViewById(R.id.btnTrnsDPPage).setOnClickListener(v -> startFragment(CenterAuthAPITransferDepositFragment.class, args, R.string.fragment_id_api_call_deposit));
