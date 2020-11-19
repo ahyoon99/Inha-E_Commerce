@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kftc.openbankingsample2.R;
+import com.kftc.openbankingsample2.biz.main.HomeFragment;
 
 import java.util.Locale;
 
@@ -144,8 +145,8 @@ public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFr
         builder.setPositiveButton("확인",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context,"메인화면으로 이동합니다.",Toast.LENGTH_LONG).show();
-                        onBackPressed();
+                        Toast.makeText(context,"판매자 메인화면으로 이동합니다.",Toast.LENGTH_LONG).show();
+                        startFragment(SellerHomeFragment.class, args, R.string.fragment_id_seller);
                     }
                 });
 
@@ -153,7 +154,15 @@ public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFr
     }
 
     public void makeQR() {
-        String data = "3000$ 1234567894615";
+        String data = "1000 어플이름-입금 김오픈 097 232000067812";
+        /*
+        *금액 1000
+        *입금계좌인자내역 어플이름-입금
+        *최종수취고객성명 김오픈
+        *최종수취고객계좌표준코드 197
+        *최종수취고객계좌번호 232000067812
+        * */
+
         if(data.isEmpty()){
             Toast.makeText(context, "value required",Toast.LENGTH_LONG);
         }else {
@@ -165,4 +174,9 @@ public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFr
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        pauseTimer();
+        startFragment(SellerHomeFragment.class, args, R.string.fragment_id_seller);
+    }
 }

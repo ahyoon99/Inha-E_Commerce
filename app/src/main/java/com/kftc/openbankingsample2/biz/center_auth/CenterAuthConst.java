@@ -7,6 +7,8 @@ public interface CenterAuthConst {
 
     public static String ACTIONBAR_TITLE = "ACTIONBAR_TITLE";
 
+    // 추가
+    String CENTER_AUTH_CLIENT_ACCESS_TOKEN = "CENTER_AUTH_CLIENT_ACCESS_TOKEN";
 
     // 설정 화면에서 저장되는 환경값
     // ex) 리얼이면 CLIENT_ID_REAL, 테스트이면 CLIENT_ID_TEST 로 저장된다.

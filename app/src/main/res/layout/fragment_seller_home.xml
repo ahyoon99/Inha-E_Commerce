@@ -20,10 +20,35 @@
         style="@style/Button01"
         android:layout_width="280dp"
         android:layout_height="50dp"
-        android:text="계좌등록"/>
+        android:text="계좌등록(3순위)"/>
 
     <Button
-        android:id="@+id/btnAPICallMenu"
+        android:id="@+id/btnCreateQRPage"
+        style="@style/Button01"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="QR 코드 생성"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/btnInqrUserInfoPage"
+        style="@style/Button01"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="사용자정보조회(1순위)"
+        android:textSize="18sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/btnInqrBlncPage"
         style="@style/Button01"
         android:layout_width="280dp"
         android:layout_height="50dp"
@@ -31,8 +56,22 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:text="API 거래 기능"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:text="잔액조회(2순위)" />
+
+    <Button
+        android:id="@+id/btnInqrTranRecPage"
+        style="@style/Button01"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:text="거래내역조회" />
+
+
 
 </LinearLayout>
 </ScrollView>

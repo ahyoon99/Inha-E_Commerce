@@ -17,7 +17,6 @@ import com.kftc.openbankingsample2.biz.center_auth.AbstractCenterAuthMainFragmen
 import com.kftc.openbankingsample2.biz.center_auth.BuyerHomeFragment;
 import com.kftc.openbankingsample2.biz.center_auth.CenterAuthHomeFragment;
 import com.kftc.openbankingsample2.biz.center_auth.SellerHomeFragment;
-import com.kftc.openbankingsample2.biz.self_auth.SelfAuthHomeFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
