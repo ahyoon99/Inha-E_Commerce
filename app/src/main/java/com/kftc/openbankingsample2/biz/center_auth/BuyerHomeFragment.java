@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.gson.Gson;
 import com.kftc.openbankingsample2.R;
 import com.kftc.openbankingsample2.biz.center_auth.api.CenterAuthAPIFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.account_balance.CenterAuthAPIAccountBalanceFragment;
@@ -16,8 +17,14 @@ import com.kftc.openbankingsample2.biz.center_auth.api.account_transaction.Cente
 import com.kftc.openbankingsample2.biz.center_auth.api.inquiry_realname.CenterAuthAPIInquiryRealNameFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.transfer_withdraw.CenterAuthAPITransferWithdrawFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.user_me.CenterAuthAPIUserMeRequestFragment;
+import com.kftc.openbankingsample2.biz.center_auth.api.user_me.CenterAuthAPIUserMeResultFragment;
 import com.kftc.openbankingsample2.biz.center_auth.auth.CenterAuthFragment;
+import com.kftc.openbankingsample2.biz.center_auth.http.CenterAuthApiRetrofitAdapter;
+import com.kftc.openbankingsample2.biz.center_auth.util.CenterAuthUtils;
 import com.kftc.openbankingsample2.biz.main.HomeFragment;
+import com.kftc.openbankingsample2.common.data.ApiCallUserMeResponse;
+
+import java.util.HashMap;
 
 /**
  * 센터인증 메인화면
@@ -55,7 +62,27 @@ public class BuyerHomeFragment extends AbstractCenterAuthMainFragment {
         view.findViewById(R.id.btnAuthToken).setOnClickListener(v -> startFragment(CenterAuthFragment.class, args, R.string.fragment_id_center_auth));
 
         // 사용자 정보조회
-        view.findViewById(R.id.btnInqrUserInfoPage).setOnClickListener(v -> startFragment(CenterAuthAPIUserMeRequestFragment.class, args, R.string.fragment_id_api_call_userme));
+        view.findViewById(R.id.btnInqrUserInfoPage).setOnClickListener(v -> {
+
+            String accessToken =  CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_ACCESS_TOKEN);
+            String userSeqNo = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_USER_SEQ_NUM);
+
+            HashMap<String, String> paramMap = new HashMap<>();
+            paramMap.put("user_seq_no", userSeqNo);
+
+            showProgress();
+            CenterAuthApiRetrofitAdapter.getInstance()
+                    .userMe("Bearer " + accessToken, paramMap)
+                    .enqueue(super.handleResponse("res_cnt", "등록계좌수", responseJson -> {
+
+                                // 성공하면 결과화면으로 이동
+                                ApiCallUserMeResponse result = new Gson().fromJson(responseJson, ApiCallUserMeResponse.class);
+                                args.putParcelable("result", result);
+
+                                startFragment(CenterAuthAPIUserMeResultFragment.class, args, R.string.fragment_id_api_call_userme);
+                            })
+                    );
+        });
 
         // 잔액조회
         view.findViewById(R.id.btnInqrBlncPage).setOnClickListener(v -> startFragment(CenterAuthAPIAccountBalanceFragment.class, args, R.string.fragment_id_api_call_balance));

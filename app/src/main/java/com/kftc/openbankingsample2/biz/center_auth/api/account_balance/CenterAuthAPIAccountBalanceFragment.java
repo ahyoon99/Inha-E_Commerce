@@ -84,10 +84,15 @@ public class CenterAuthAPIAccountBalanceFragment extends AbstractCenterAuthMainF
         view.findViewById(R.id.btnNext).setOnClickListener(v -> {
 
             // 직전내용 저장
-            String accessToken = etToken.getText().toString().trim();
+            //String accessToken = etToken.getText().toString().trim();
+            String accessToken =  CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_ACCESS_TOKEN);
             Utils.saveData(CenterAuthConst.CENTER_AUTH_ACCESS_TOKEN, accessToken);
             String fintechUseNum = etFintechUseNum.getText().toString();
             Utils.saveData(CenterAuthConst.CENTER_AUTH_FINTECH_USE_NUM, fintechUseNum);
+
+
+            String userSeqNo = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_USER_SEQ_NUM);
+
 
             // 요청전문
             HashMap<String, String> paramMap = new HashMap<>();
