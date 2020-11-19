@@ -21,7 +21,7 @@ import com.kftc.openbankingsample2.biz.center_auth.api.account_balance.CenterAut
 import com.kftc.openbankingsample2.biz.center_auth.api.account_list.CenterAuthAPIAccountListRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.account_transaction.CenterAuthAPIAccountTransactionRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.transfer_result.CenterAuthAPITransferResultFragment;
-import com.kftc.openbankingsample2.biz.center_auth.api.transfer_withdraw.CenterAuthAPITransferWithdrawCheckFragment;
+//import com.kftc.openbankingsample2.biz.center_auth.api.transfer_withdraw.CenterAuthAPITransferWithdrawCheckFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.user_me.CenterAuthAPIUserMeRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.http.CenterAuthApiRetrofitAdapter;
 import com.kftc.openbankingsample2.biz.center_auth.util.CenterAuthUtils;
@@ -97,7 +97,7 @@ public class CenterAuthAPIFragment extends AbstractCenterAuthMainFragment implem
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) { // scan해서 결과값 받아오는 부분
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
         String accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwNzYyNDM2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2MTMyMTU2NjAsImp0aSI6IjI1Nzg4MDEwLWZkZTItNDU2ZS1iYzVhLThkZGZiZGY2MjMzMiJ9.uk4NE6y9kHZ6sHAHIcl26STcWRp2up7HCl2plJ5eVw0".trim();
@@ -140,6 +140,6 @@ public class CenterAuthAPIFragment extends AbstractCenterAuthMainFragment implem
     }
 
     void goNext() {
-        startFragment(CenterAuthAPITransferWithdrawCheckFragment.class, args, R.string.fragment_id_api_call_transaction);
+        //startFragment(CenterAuthAPITransferWithdrawCheckFragment.class, args, R.string.fragment_id_api_call_transaction);
     }
 }
