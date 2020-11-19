@@ -4,6 +4,7 @@
 판매자 버튼 -> fragment_seller_home.xml, center_auth/SellerHomeFragment.java로 이동)\
 ㄴQR코드 생성 -> fragment_center_auth_create_qrcode.xml, center_auth/fragment_center_auth_create_qrcode.java로 이동\
 소비자 버튼 -> fragment_buyer_home.xml, center_auth/BuyerHomeFragment.java로 이동)\
+
   
 \
 \
