@@ -67,6 +67,8 @@ public class my_menu extends AbstractCenterAuthMainFragment implements View.OnCl
     // data
     private Bundle args;
 
+    private static final String total_price_arg ="0";
+
 
     private int price1 = 4000;
     private int price2 = 5000;
@@ -74,7 +76,6 @@ public class my_menu extends AbstractCenterAuthMainFragment implements View.OnCl
     private int price4 = 6000;
     private int price5 = 1000;
     private int price6 = 1000;
-
 
 
     @Override
@@ -130,6 +131,8 @@ public class my_menu extends AbstractCenterAuthMainFragment implements View.OnCl
                 builder.setPositiveButton("예",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
+                                args.putString("total_price_arg", str_tot_pri);
+                                setArguments(args);
                                 // Toast.makeText(getActivity().getApplicationContext(), "예를 선택했습니다.", Toast.LENGTH_LONG).show();
                                 startFragment(fragment_center_auth_create_qrcode.class, args, R.string.fragment_create_qrcode_to_withdraw);
                             }

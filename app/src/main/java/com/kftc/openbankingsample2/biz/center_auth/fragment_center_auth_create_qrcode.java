@@ -38,6 +38,8 @@ public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFr
     // data
     private Bundle args;
 
+    private static String total_price ="0";
+
     // timer
     private static final long START_TIME_IN_MILLIS = 30000;
     private TextView mTextViewCountDown;
@@ -63,6 +65,7 @@ public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFr
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        total_price = getArguments().getString("total_price_arg");
         view = inflater.inflate(R.layout.fragment_center_auth_create_qrcode, container, false);
         initView();
         return view;
@@ -154,7 +157,7 @@ public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFr
     }
 
     public void makeQR() {
-        String data = "1000 어플이름-입금 김오픈 097 232000067812";
+        String data = total_price + " 어플이름-입금 김오픈 097 232000067812";
         /*
         *금액 1000
         *입금계좌인자내역 어플이름-입금
