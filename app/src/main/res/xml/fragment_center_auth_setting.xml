@@ -24,12 +24,23 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="센터인증 테스트서버 접속정보">
-
+        android:title="API 파라미터 정보">
         <EditTextPreference
             android:key="CENTER_AUTH_CLIENT_ACCESS_TOKEN_TEST"
             android:title="ACCESS TOKEN"
             android:defaultValue="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwNzYyNDM2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2MTMyMTU2NjAsImp0aSI6IjI1Nzg4MDEwLWZkZTItNDU2ZS1iYzVhLThkZGZiZGY2MjMzMiJ9.uk4NE6y9kHZ6sHAHIcl26STcWRp2up7HCl2plJ5eVw0"/>
+
+        <EditTextPreference
+            android:key="CENTER_AUTH_CLIENT_USER_SEQ_NUM_TEST"
+            android:title="USER SEQ NUMBER"
+            android:defaultValue="1100762436"/>
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="센터인증 테스트서버 접속정보">
+
 
         <EditTextPreference
             android:key="CENTER_AUTH_BASE_URI_TEST"

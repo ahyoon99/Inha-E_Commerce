@@ -173,10 +173,4 @@ public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFr
 
         }
     }
-
-    @Override
-    public void onBackPressed() {
-        pauseTimer();
-        startFragment(SellerHomeFragment.class, args, R.string.fragment_id_seller);
-    }
 }
