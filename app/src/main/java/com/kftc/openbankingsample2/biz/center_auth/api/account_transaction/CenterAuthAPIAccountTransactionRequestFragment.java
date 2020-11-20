@@ -69,7 +69,7 @@ public class CenterAuthAPIAccountTransactionRequestFragment extends AbstractCent
 
         // access_token : 가장 최근 액세스 토큰으로 기본 설정
         EditText etToken = view.findViewById(R.id.etToken);
-        etToken.setText(AppData.getCenterAuthAccessToken(Scope.INQUIRY));
+        etToken.setText(CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_ACCESS_TOKEN));
 
         // access_token : 기존 토큰에서 선택
         view.findViewById(R.id.btnSelectToken).setOnClickListener(v -> showTokenDialog(etToken, Scope.INQUIRY));
@@ -83,7 +83,7 @@ public class CenterAuthAPIAccountTransactionRequestFragment extends AbstractCent
         EditText etFintechUseNum = view.findViewById(R.id.etFintechUseNum);
         etFintechUseNum.setText(Utils.getSavedValue(CenterAuthConst.CENTER_AUTH_FINTECH_USE_NUM));
 
-        // 핀테크이용번호 : 기존 계좌에서 선택
+        // 핀테크이용번호 : 기존 계좌에서 선택 -> 이 부분 계좌 선택 하면 하게 하기.
         View.OnClickListener onClickListener = v -> showAccountDialog(etFintechUseNum);
         view.findViewById(R.id.btnSelectFintechUseNum).setOnClickListener(onClickListener);
 
@@ -179,15 +179,21 @@ public class CenterAuthAPIAccountTransactionRequestFragment extends AbstractCent
         // 거래내역조회 요청
         view.findViewById(R.id.btnNext).setOnClickListener(v -> {
 
+
             // 직전내용 저장
-            String accessToken = etToken.getText().toString().trim();
-            Utils.saveData(CenterAuthConst.CENTER_AUTH_ACCESS_TOKEN, accessToken);
+            //String accessToken = etToken.getText().toString().trim();
+            //Utils.saveData(CenterAuthConst.CENTER_AUTH_ACCESS_TOKEN, accessToken);
             String fintechUseNum = etFintechUseNum.getText().toString();
             Utils.saveData(CenterAuthConst.CENTER_AUTH_FINTECH_USE_NUM, fintechUseNum);
 
+            String accessToken =  CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_ACCESS_TOKEN);
+            String BankTranId = setRandomBankTranIdCustom();
+
+
+
             // 요청전문
             HashMap<String, String> paramMap = new HashMap<>();
-            paramMap.put("bank_tran_id", etBankTranId.getText().toString());
+            paramMap.put("bank_tran_id", BankTranId);
             paramMap.put("fintech_use_num", fintechUseNum);
             paramMap.put("inquiry_type", inquiryType);
             paramMap.put("inquiry_base", inquiryBase);

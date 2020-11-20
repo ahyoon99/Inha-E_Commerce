@@ -88,7 +88,7 @@ public class CenterAuthAPIAccountTransactionResultFragment extends AbstractCente
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.addItemDecoration(new KmRecyclerViewDividerHeight(30));
 
-        view.findViewById(R.id.btnNext).setOnClickListener(v -> goNext());
+        view.findViewById(R.id.btnNext).setOnClickListener(v -> onBackPressed());
 
         initData();
     }
@@ -171,7 +171,4 @@ public class CenterAuthAPIAccountTransactionResultFragment extends AbstractCente
         }
     };
 
-    void goNext() {
-        startFragment(CenterAuthAPIFragment.class, null, R.string.fragment_id_center_api_call);
-    }
 }
