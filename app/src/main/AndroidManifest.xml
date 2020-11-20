@@ -43,7 +43,11 @@
 
         <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation" />
+            xmlns:tools="http://schemas.android.com/tools"
+            tools:replace="screenOrientation"/>
+
+        <activity android:name=".biz.center_auth.api.transfer_withdraw.CenterAuthAPITransferWithdrawActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
