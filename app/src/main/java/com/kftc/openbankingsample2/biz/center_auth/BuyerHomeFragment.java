@@ -20,7 +20,7 @@ import com.kftc.openbankingsample2.biz.center_auth.api.account_balance.CenterAut
 import com.kftc.openbankingsample2.biz.center_auth.api.account_transaction.CenterAuthAPIAccountTransactionRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.account_transaction.CenterAuthAPIAccountTransactionResultFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.inquiry_realname.CenterAuthAPIInquiryRealNameFragment;
-//import com.kftc.openbankingsample2.biz.center_auth.api.transfer_withdraw.CenterAuthAPITransferWithdrawFragment;
+import com.kftc.openbankingsample2.biz.center_auth.api.transfer_withdraw.CenterAuthAPITransferWithdrawCheckFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.user_me.CenterAuthAPIUserMeRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.user_me.CenterAuthAPIUserMeResultFragment;
 import com.kftc.openbankingsample2.biz.center_auth.auth.CenterAuthFragment;
@@ -184,7 +184,7 @@ public class BuyerHomeFragment extends AbstractCenterAuthMainFragment {
                 sendingArgs = new Bundle();
                 sendingArgs.putStringArray("key", QRinfo);
 
-                //startFragment(CenterAuthAPITransferWithdrawCheckFragment.class, sendingArgs, R.string.fragment_id_api_call_withdraw);
+                startFragment(CenterAuthAPITransferWithdrawCheckFragment.class, sendingArgs, R.string.fragment_id_api_call_withdraw);
             }
 
             else {
