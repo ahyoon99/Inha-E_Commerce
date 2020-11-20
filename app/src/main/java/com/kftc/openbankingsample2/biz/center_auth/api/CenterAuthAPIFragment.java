@@ -3,27 +3,22 @@ package com.kftc.openbankingsample2.biz.center_auth.api;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.gson.Gson;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.kftc.openbankingsample2.R;
 import com.kftc.openbankingsample2.biz.center_auth.AbstractCenterAuthMainFragment;
-import com.kftc.openbankingsample2.biz.center_auth.CenterAuthConst;
 import com.kftc.openbankingsample2.biz.center_auth.CenterAuthHomeFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.account_balance.CenterAuthAPIAccountBalanceFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.account_list.CenterAuthAPIAccountListRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.account_transaction.CenterAuthAPIAccountTransactionRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.transfer_result.CenterAuthAPITransferResultFragment;
-import com.kftc.openbankingsample2.biz.center_auth.api.transfer_withdraw.CenterAuthAPITransferWithdrawActivity;
 import com.kftc.openbankingsample2.biz.center_auth.api.transfer_withdraw.CenterAuthAPITransferWithdrawCheckFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.user_me.CenterAuthAPIUserMeRequestFragment;
 
@@ -84,7 +79,38 @@ public class CenterAuthAPIFragment extends AbstractCenterAuthMainFragment {
     }
 
     public void withdrawOnClick() {
-        Intent intent = new Intent(getActivity(), CenterAuthAPITransferWithdrawActivity.class);
-        startActivity(intent);
+        IntentIntegrator intentIntegrator = new IntentIntegrator(this.activity);
+        intentIntegrator.setBeepEnabled(false);
+        intentIntegrator.forSupportFragment(CenterAuthAPIFragment.this).initiateScan();
+//        Intent intent = new Intent(getActivity(), CenterAuthAPITransferWithdrawActivity.class);
+//        startActivity(intent);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
+        if (result != null) {
+            String resultContents = result.getContents();
+
+            if (result.getContents() != null) {
+                String QRinfo[] = resultContents.split(" ");
+
+                showAlert("QR 코드 인식 결과", QRinfo[0] + " " + QRinfo[1] + " " + QRinfo[2] + " " + QRinfo[3] + " " + QRinfo[4]);
+
+                sendingArgs = new Bundle();
+                sendingArgs.putStringArray("key", QRinfo);
+
+                startFragment(CenterAuthAPITransferWithdrawCheckFragment.class, sendingArgs, R.string.fragment_id_api_call_withdraw);
+            }
+
+            else {
+
+            }
+        }
+
+        else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
