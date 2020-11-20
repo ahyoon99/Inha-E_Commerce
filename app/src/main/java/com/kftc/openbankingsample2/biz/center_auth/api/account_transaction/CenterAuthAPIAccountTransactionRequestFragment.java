@@ -78,7 +78,7 @@ public class CenterAuthAPIAccountTransactionRequestFragment extends AbstractCent
 
             // 은행거래고유번호(20자리)
             // 하루동안 유일성이 보장되어야함. 이용기관번호(10자리) + 생성주체구분코드(1자리, U:이용기관, O:오픈뱅킹) + 이용기관 부여번호(9자리)
-            String clientUseCode = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_USE_CODE);
+            String clientUseCode = "T991636280";
             String randomUnique9String = Utils.getCurrentTime();    // 이용기관 부여번호를 임시로 시간데이터 사용
             String bankTranResult = String.format("%sU%s", clientUseCode, randomUnique9String);
 
@@ -91,7 +91,7 @@ public class CenterAuthAPIAccountTransactionRequestFragment extends AbstractCent
             paramMap.put("from_date", Utils.getDateString8(-30).trim());
             paramMap.put("to_date", Utils.getDateString8(0).trim());
             paramMap.put("sort_order", "D");
-            paramMap.put("tran_dtime", new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format((new Date())).toString());
+            paramMap.put("tran_dtime", new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format((new Date())));
             paramMap.put("befor_inquiry_trace_info", "123");
 
             showProgress();

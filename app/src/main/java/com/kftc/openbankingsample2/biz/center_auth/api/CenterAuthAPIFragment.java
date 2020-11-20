@@ -21,17 +21,27 @@ import com.kftc.openbankingsample2.biz.center_auth.api.account_balance.CenterAut
 import com.kftc.openbankingsample2.biz.center_auth.api.account_list.CenterAuthAPIAccountListRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.account_transaction.CenterAuthAPIAccountTransactionRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.transfer_result.CenterAuthAPITransferResultFragment;
-//import com.kftc.openbankingsample2.biz.center_auth.api.transfer_withdraw.CenterAuthAPITransferWithdrawCheckFragment;
+import com.kftc.openbankingsample2.biz.center_auth.api.transfer_withdraw.CenterAuthAPITransferWithdrawCheckFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.user_me.CenterAuthAPIUserMeRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.http.CenterAuthApiRetrofitAdapter;
 import com.kftc.openbankingsample2.biz.center_auth.util.CenterAuthUtils;
 import com.kftc.openbankingsample2.common.data.ApiCallAccountTransactionResponse;
+import com.kftc.openbankingsample2.common.data.ApiCallTransferDepositResponse;
+import com.kftc.openbankingsample2.common.data.ApiCallTransferWithdrawResponse;
+import com.kftc.openbankingsample2.common.data.ResMsg;
+import com.kftc.openbankingsample2.common.data.Transfer;
 import com.kftc.openbankingsample2.common.util.Utils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * API 호출 메뉴
@@ -46,6 +56,7 @@ public class CenterAuthAPIFragment extends AbstractCenterAuthMainFragment implem
 
     // data
     private Bundle args;
+    private Bundle sendingArgs;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,46 +111,82 @@ public class CenterAuthAPIFragment extends AbstractCenterAuthMainFragment implem
     public void onActivityResult(int requestCode, int resultCode, Intent data) { // scan해서 결과값 받아오는 부분
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
-        String accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwNzYyNDM2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2MTMyMTU2NjAsImp0aSI6IjI1Nzg4MDEwLWZkZTItNDU2ZS1iYzVhLThkZGZiZGY2MjMzMiJ9.uk4NE6y9kHZ6sHAHIcl26STcWRp2up7HCl2plJ5eVw0".trim();
-        Utils.saveData(CenterAuthConst.CENTER_AUTH_ACCESS_TOKEN, accessToken);
-        String fintechUseNum = "199163628057884692187614";
-        Utils.saveData(CenterAuthConst.CENTER_AUTH_FINTECH_USE_NUM, fintechUseNum);
+        String QRinfo[] = result.toString().split(" ");
 
-        // 은행거래고유번호(20자리)
-        // 하루동안 유일성이 보장되어야함. 이용기관번호(10자리) + 생성주체구분코드(1자리, U:이용기관, O:오픈뱅킹) + 이용기관 부여번호(9자리)
-        String clientUseCode = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_USE_CODE);
-        String randomUnique9String = Utils.getCurrentTime();    // 이용기관 부여번호를 임시로 시간데이터 사용
-        String bankTranResult = String.format("%sU%s", clientUseCode, randomUnique9String);
+        sendingArgs = new Bundle();
+        sendingArgs.putStringArray("key", QRinfo);
 
-        // 요청전문
-        HashMap<String, String> paramMap = new HashMap<>();
-        paramMap.put("bank_tran_id", bankTranResult);
-        paramMap.put("fintech_use_num", fintechUseNum);
-        paramMap.put("inquiry_type", "A");
-        paramMap.put("inquiry_base", "D");
-        paramMap.put("from_date", Utils.getDateString8(-30).trim());
-        paramMap.put("to_date", Utils.getDateString8(0).trim());
-        paramMap.put("sort_order", "D");
-        paramMap.put("tran_dtime", new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format((new Date())).toString());
-        paramMap.put("befor_inquiry_trace_info", "123");
+        startFragment(CenterAuthAPITransferWithdrawCheckFragment.class, sendingArgs, R.string.fragment_id_api_call_transaction);
 
-        showProgress();
-        CenterAuthApiRetrofitAdapter.getInstance()
-                .accountTrasactionListFinNum("Bearer " + accessToken, paramMap)
-                .enqueue(super.handleResponse("page_record_cnt", "현재페이지 조회건수", responseJson -> {
-
-                            // 성공하면 결과화면으로 이동
-                            ApiCallAccountTransactionResponse apiCallAccountTransactionResponse =
-                                    new Gson().fromJson(responseJson, ApiCallAccountTransactionResponse.class);
-                            args.putParcelable("result", apiCallAccountTransactionResponse);
-                            args.putSerializable("request", paramMap);
-                            args.putString(CenterAuthConst.BUNDLE_KEY_ACCESS_TOKEN, accessToken);
-                            goNext();
-                        })
-                );
+//        String accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwNzYyNDM2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2MTMyMTU2NjAsImp0aSI6IjI1Nzg4MDEwLWZkZTItNDU2ZS1iYzVhLThkZGZiZGY2MjMzMiJ9.uk4NE6y9kHZ6sHAHIcl26STcWRp2up7HCl2plJ5eVw0".trim();
+//        Utils.saveData(CenterAuthConst.CENTER_AUTH_ACCESS_TOKEN, accessToken);
+//        String fintechUseNum = "199163628057884692187614";
+//        Utils.saveData(CenterAuthConst.CENTER_AUTH_FINTECH_USE_NUM, fintechUseNum);
+//
+//        // 은행거래고유번호(20자리)
+//        // 하루동안 유일성이 보장되어야함. 이용기관번호(10자리) + 생성주체구분코드(1자리, U:이용기관, O:오픈뱅킹) + 이용기관 부여번호(9자리)
+//        String clientUseCode = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_USE_CODE);
+//        String randomUnique9String = Utils.getCurrentTime();    // 이용기관 부여번호를 임시로 시간데이터 사용
+//        String bankTranResult = String.format("%sU%s", clientUseCode, randomUnique9String);
+//
+//        // 요청전문
+//        HashMap<String, String> paramMap = new HashMap<>();
+//        paramMap.put("bank_tran_id", bankTranResult);
+//        paramMap.put("fintech_use_num", fintechUseNum);
+//        paramMap.put("inquiry_type", "A");
+//        paramMap.put("inquiry_base", "D");
+//        paramMap.put("from_date", Utils.getDateString8(-30).trim());
+//        paramMap.put("to_date", Utils.getDateString8(0).trim());
+//        paramMap.put("sort_order", "D");
+//        paramMap.put("tran_dtime", new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format((new Date())).toString());
+//        paramMap.put("befor_inquiry_trace_info", "123");
+//
+//        showProgress();
+//        CenterAuthApiRetrofitAdapter.getInstance()
+//                .transferWithdrawFinNum("Bearer " + accessToken, paramMap)
+//                .enqueue(handleResponse);
+//
+//    // 취소
+//        view.findViewById(R.id.btnCancel).setOnClickListener(v -> onBackPressed());
     }
 
     void goNext() {
-        //startFragment(CenterAuthAPITransferWithdrawCheckFragment.class, args, R.string.fragment_id_api_call_transaction);
+        startFragment(CenterAuthAPITransferWithdrawCheckFragment.class, args, R.string.fragment_id_api_call_transaction);
     }
+
+    // 결과처리
+//    Callback<Map> handleResponse = new Callback<Map>() {
+//
+//        @Override
+//        public void onResponse(Call<Map> call, Response<Map> response) {
+//            hideProgress();
+//
+//            // http ok(200) 아닐경우
+//            if (!response.isSuccessful()) {
+//                handleHttpFailure(response);
+//                return;
+//            }
+//
+//            String responseJson = new Gson().toJson(response.body());
+//
+//            // json 안에 있는 응답코드를 확인
+//            ResMsg resMsg = new Gson().fromJson(responseJson, ResMsg.class);
+//            if (!resMsg.isSuccess()) {
+//                handleApiFailure(resMsg, responseJson);
+//                return;
+//            }
+//
+//            // 응답메시지 파싱
+//            ApiCallTransferWithdrawResponse result =
+//                    new Gson().fromJson(responseJson, ApiCallTransferWithdrawResponse.class);
+//
+//            showAlert("정상", "이체성공!! 이체금액: " + Utils.moneyForm(String.valueOf(result.getTrans_amt())) + "원");
+//        }
+//
+//        @Override
+//        public void onFailure(Call<Map> call, Throwable t) {
+//            hideProgress();
+//            showAlert("통신실패", "서버 접속에 실패하였습니다.", t.getMessage());
+//        }
+//    };
 }
