@@ -21,7 +21,7 @@
     <string name="fragment_id_self_api_call" translatable="false">자체인증 API호출</string>
     <string name="fragment_id_api_call_userme" translatable="false">사용자정보조회</string>
     <string name="fragment_id_api_call_balance" translatable="false">잔액조회</string>
-    <string name="fragment_id_api_call_transaction" translatable="false">거래내역조회</string>
+    <string name="fragment_id_api_call_transaction" translatable="false">거래 내역 조회</string>
     <string name="fragment_id_api_call_withdraw" translatable="false">출금이체</string>
 
     <string name="fragment_id_api_call_realname" translatable="false">계좌실명조회</string>

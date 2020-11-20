@@ -51,17 +51,17 @@
                 android:layout_marginTop="15dp"
                 android:text="거래내역조회" />
 
-            <Button
-                android:id="@+id/btnInqrRealNamePage"
-                style="@style/Button01"
-                android:layout_width="280dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="15dp"
-                android:text="계좌실명조회" />
+<!--            <Button-->
+<!--                android:id="@+id/btnInqrRealNamePage"-->
+<!--                style="@style/Button01"-->
+<!--                android:layout_width="280dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:text="계좌실명조회" />-->
 
             <Button
                 android:id="@+id/btnTrnsWDPage"
@@ -111,17 +111,17 @@
                 android:layout_marginTop="16dp"
                 android:text="등록계좌조회" />
 
-            <Button
-                android:id="@+id/btnAccountCancel"
-                style="@style/Button01"
-                android:layout_width="280dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="계좌해지" />
+<!--            <Button-->
+<!--                android:id="@+id/btnAccountCancel"-->
+<!--                style="@style/Button01"-->
+<!--                android:layout_width="280dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="계좌해지" />-->
 
             <Button
                 android:id="@+id/btnTransferResult"
@@ -135,53 +135,53 @@
                 android:layout_marginTop="16dp"
                 android:text="이체결과조회" />
 
-            <Button
-                android:id="@+id/btnInqrRemitList"
-                style="@style/Button01"
-                android:layout_width="280dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="송금인정보조회" />
+<!--            <Button-->
+<!--                android:id="@+id/btnInqrRemitList"-->
+<!--                style="@style/Button01"-->
+<!--                android:layout_width="280dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="송금인정보조회" />-->
 
-            <Button
-                android:id="@+id/btnInqrReceive"
-                style="@style/Button01"
-                android:layout_width="280dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="수취조회" />
+<!--            <Button-->
+<!--                android:id="@+id/btnInqrReceive"-->
+<!--                style="@style/Button01"-->
+<!--                android:layout_width="280dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="수취조회" />-->
 
-            <Button
-                android:id="@+id/btnReturnClaim"
-                style="@style/Button01"
-                android:layout_width="280dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="자금반환청구" />
+<!--            <Button-->
+<!--                android:id="@+id/btnReturnClaim"-->
+<!--                style="@style/Button01"-->
+<!--                android:layout_width="280dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="자금반환청구" />-->
 
-            <Button
-                android:id="@+id/btnReturnResult"
-                style="@style/Button01"
-                android:layout_width="280dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:text="자금반환 결과조회" />
+<!--            <Button-->
+<!--                android:id="@+id/btnReturnResult"-->
+<!--                style="@style/Button01"-->
+<!--                android:layout_width="280dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:layout_marginLeft="8dp"-->
+<!--                android:layout_marginRight="8dp"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:text="자금반환 결과조회" />-->
 
             <View
                 android:layout_width="match_parent"

@@ -55,7 +55,7 @@ public class CenterAuthFragment extends AbstractCenterAuthMainFragment {
         view.findViewById(R.id.btnAuthNewWebAuthAcnt2).setOnClickListener(v -> startFragment(CenterAuthAuthorizeAccountFragment.class, args, R.string.fragment_id_auth_authorize_account));
 
         // 토큰발급(2-legged) 요청
-        view.findViewById(R.id.btnAuthToken).setOnClickListener(v -> startFragment(CenterAuthTokenRequestOobFragment.class, args, R.string.fragment_id_token));
+        // view.findViewById(R.id.btnAuthToken).setOnClickListener(v -> startFragment(CenterAuthTokenRequestOobFragment.class, args, R.string.fragment_id_token));
 
     }
 

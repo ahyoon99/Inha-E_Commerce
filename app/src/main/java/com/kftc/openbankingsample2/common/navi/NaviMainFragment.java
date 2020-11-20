@@ -96,7 +96,6 @@ public class NaviMainFragment extends AbstractNaviFragment {
 
                 case R.id.rbSetting:
                     activity.closeNavi();
-                   // activity.startFragment(SelfAuthSettingFragment.class, args, R.string.fragment_id_center_auth_setting);
                     break;
 
                 case R.id.rbOpenLicense:

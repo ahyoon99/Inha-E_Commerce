@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="openplatform-sample-source/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openplatform-sample-source.iml" filepath="$PROJECT_DIR$/.idea/modules/openplatform-sample-source.iml" group="openplatform-sample-source" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Inha-E_Commerce.iml" filepath="$PROJECT_DIR$/.idea/modules/Inha-E_Commerce.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Inha-E_Commerce.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Inha-E_Commerce.app.iml" />
     </modules>
   </component>
 </project>
