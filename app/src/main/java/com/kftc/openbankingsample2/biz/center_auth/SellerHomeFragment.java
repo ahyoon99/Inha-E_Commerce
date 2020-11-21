@@ -11,11 +11,9 @@ import androidx.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.kftc.openbankingsample2.R;
-import com.kftc.openbankingsample2.biz.center_auth.api.CenterAuthAPIFragment;
-import com.kftc.openbankingsample2.biz.center_auth.api.account_balance.CenterAuthAPIAccountBalanceFragment;
+import com.kftc.openbankingsample2.biz.center_auth.api.account_balance.CenterAuthAPIAccountBalanceFragmentSeller;
 import com.kftc.openbankingsample2.biz.center_auth.api.account_transaction.CenterAuthAPIAccountTransactionRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.my_menu;
-import com.kftc.openbankingsample2.biz.center_auth.api.user_me.CenterAuthAPIUserMeRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.user_me.CenterAuthAPIUserMeResultFragment;
 import com.kftc.openbankingsample2.biz.center_auth.auth.CenterAuthFragment;
 import com.kftc.openbankingsample2.biz.center_auth.http.CenterAuthApiRetrofitAdapter;
@@ -84,7 +82,7 @@ public class SellerHomeFragment extends AbstractCenterAuthMainFragment {
         });
 
         // 잔액조회
-        view.findViewById(R.id.btnInqrBlncPage).setOnClickListener(v -> startFragment(CenterAuthAPIAccountBalanceFragment.class, args, R.string.fragment_id_api_call_balance));
+        view.findViewById(R.id.btnInqrBlncPage).setOnClickListener(v ->startFragment(CenterAuthAPIAccountBalanceFragmentSeller.class, args, R.string.fragment_id_api_call_balance));
 
         // 거래내역조회
         view.findViewById(R.id.btnInqrTranRecPage).setOnClickListener(v -> startFragment(CenterAuthAPIAccountTransactionRequestFragment.class, args, R.string.fragment_id_api_call_transaction));
@@ -101,4 +99,5 @@ public class SellerHomeFragment extends AbstractCenterAuthMainFragment {
     public void onBackPressed() {
         startFragment(HomeFragment.class, args, R.string.fragment_id_home);
     }
+
 }

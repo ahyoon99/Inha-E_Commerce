@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.kftc.openbankingsample2.R;
-import com.kftc.openbankingsample2.biz.center_auth.api.account_balance.CenterAuthAPIAccountBalanceFragment;
+import com.kftc.openbankingsample2.biz.center_auth.api.account_balance.CenterAuthAPIAccountBalanceFragmentSeller;
 import com.kftc.openbankingsample2.biz.center_auth.api.account_transaction.CenterAuthAPIAccountTransactionRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.inquiry_realname.CenterAuthAPIInquiryRealNameFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.transfer_deposit.CenterAuthAPITransferDepositFragment;
@@ -55,7 +55,7 @@ public class NaviAPICallFragment extends AbstractNaviFragment {
         // 잔액조회
         view.findViewById(R.id.llBalance).setOnClickListener(v -> {
             activity.closeNavi();
-            activity.startFragment(CenterAuthAPIAccountBalanceFragment.class, args, R.string.fragment_id_api_call_balance);
+            activity.startFragment(CenterAuthAPIAccountBalanceFragmentSeller.class, args, R.string.fragment_id_api_call_balance);
         });
 
         // 거래내역조회

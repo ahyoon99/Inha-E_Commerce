@@ -4,6 +4,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f2d4f06c1210d2e030d37797960eb03/jetified-timber-4.6.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f2d4f06c1210d2e030d37797960eb03/jetified-timber-4.6.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/2f2d4f06c1210d2e030d37797960eb03/jetified-timber-4.6.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/323a56630c8f45fbe98f9499625448b5/jetified-timber-4.6.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/323a56630c8f45fbe98f9499625448b5/jetified-timber-4.6.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/323a56630c8f45fbe98f9499625448b5/jetified-timber-4.6.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jakewharton.timber/timber/4.6.0/59a5ff6f7b35c8a1df363058708583761aceb081/timber-4.6.0-javadoc.jar!/" />

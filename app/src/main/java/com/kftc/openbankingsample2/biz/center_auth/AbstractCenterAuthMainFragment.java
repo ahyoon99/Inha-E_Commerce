@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.kftc.openbankingsample2.R;
+import com.kftc.openbankingsample2.biz.center_auth.http.CenterAuthApiRetrofitAdapter;
 import com.kftc.openbankingsample2.biz.center_auth.util.CenterAuthUtils;
 import com.kftc.openbankingsample2.biz.main.AbstractMainFragment;
 import com.kftc.openbankingsample2.biz.main.MainActivity;
@@ -19,7 +20,11 @@ import com.kftc.openbankingsample2.common.data.AccessToken;
 import com.kftc.openbankingsample2.common.data.BankAccount;
 import com.kftc.openbankingsample2.common.util.Utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * 센터인증 프래그먼트 추상 클래스
@@ -107,6 +112,7 @@ public class AbstractCenterAuthMainFragment extends AbstractMainFragment {
     protected void showAccountDialog(EditText etFintechUseNum) {
         showAccountDialog(etFintechUseNum, null, null);
     }
+
 
     // 계좌번호 선택창
     protected void showAccountDialog(EditText etBankCode, EditText etAccountNum) {
