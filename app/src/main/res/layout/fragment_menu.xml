@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?><!--<LinearLayout-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--    <include-->
+    <!--        android:id="@+id/appBarLayout"-->
+    <!--        layout="@layout/my_app_bar"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="메뉴 선택" />-->
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+
+        <TableRow android:padding="5dip">
+
+            <TextView
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="햄치즈 샌드위치" />
+
+            <TextView
+                android:id="@+id/price1"
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="4000" />
+
+            <EditText
+                android:id="@+id/editText1"
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLength="2"
+                android:text="0" />
+
+            <!--            <Button-->
+            <!--                android:id="@+id/btn1_1"-->
+            <!--                style="@style/TextViewAPIResult"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_weight="0.5"-->
+            <!--                android:gravity="center"-->
+            <!--                android:onClick="btnClick"-->
+            <!--                android:text="▲" />-->
+
+            <!--            <Button-->
+            <!--                android:id="@+id/btn1_2"-->
+            <!--                style="@style/TextViewAPIResult"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_weight="0.5"-->
+            <!--                android:gravity="center"-->
+            <!--                android:onClick="btnClick"-->
+            <!--                android:text="▼" />-->
+        </TableRow>
+
+        <TableRow android:padding="5dip">
+
+            <TextView
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="더블치즈 샌드위치" />
+
+            <TextView
+                android:id="@+id/price2"
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="5000" />
+
+            <EditText
+                android:id="@+id/editText2"
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLength="2"
+                android:text="0" />
+
+        </TableRow>
+        <TableRow android:padding="5dip">
+
+            <TextView
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="베이컨치즈 샌드위치" />
+
+            <TextView
+                android:id="@+id/price3"
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="5000" />
+
+            <EditText
+                android:id="@+id/editText3"
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLength="2"
+                android:text="0" />
+
+        </TableRow>
+        <TableRow android:padding="5dip">
+
+            <TextView
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="아보홀릭 샌드위치" />
+
+            <TextView
+                android:id="@+id/price4"
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="6000" />
+
+            <EditText
+                android:id="@+id/editText4"
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLength="2"
+                android:text="0" />
+
+        </TableRow>
+        <TableRow android:padding="5dip">
+
+            <TextView
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="코카콜라" />
+
+            <TextView
+                android:id="@+id/price5"
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1000" />
+
+            <EditText
+                android:id="@+id/editText5"
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLength="2"
+                android:text="0" />
+
+        </TableRow>
+        <TableRow android:padding="5dip">
+
+            <TextView
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="스프라이트" />
+
+            <TextView
+                android:id="@+id/price6"
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1000" />
+
+            <EditText
+                android:id="@+id/editText6"
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLength="2"
+                android:text="0" />
+
+        </TableRow>
+
+        <TableRow android:padding="5dip">
+
+            <!--            <EditText-->
+            <!--                android:id="@+id/result"-->
+            <!--                style="@style/TextViewAPIResult"-->
+            <!--                android:layout_width="0dp"-->
+            <!--                android:layout_marginTop="30dp"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:gravity="center"-->
+            <!--                android:text="0" />-->
+
+            <Button
+                android:id="@+id/btnPay"
+                style="@style/TextViewAPIResult"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="QR코드 만들기" />
+
+
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

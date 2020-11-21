@@ -91,6 +91,6 @@ public class CenterAuthAPIUserMeResultFragment extends AbstractCenterAuthMainFra
     }
 
     void goNext() {
-        startFragment(CenterAuthAPIFragment.class, null, R.string.fragment_id_center_api_call);
+        onBackPressed();
     }
 }

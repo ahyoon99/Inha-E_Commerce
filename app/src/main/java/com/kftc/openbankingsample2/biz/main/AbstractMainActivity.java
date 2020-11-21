@@ -23,8 +23,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.kftc.openbankingsample2.R;
 import com.kftc.openbankingsample2.biz.center_auth.AbstractCenterAuthMainFragment;
 import com.kftc.openbankingsample2.biz.center_auth.setting.CenterAuthSettingFragment;
-import com.kftc.openbankingsample2.biz.self_auth.AbstractSelfAuthMainFragment;
-import com.kftc.openbankingsample2.biz.self_auth.setting.SelfAuthSettingFragment;
 import com.kftc.openbankingsample2.common.navi.NaviMainFragment;
 import com.kftc.openbankingsample2.common.util.Utils;
 import com.kftc.openbankingsample2.common.util.view.CustomContextWrapper;
@@ -94,9 +92,10 @@ public abstract class AbstractMainActivity extends AppCompatActivity {
             // 센터인증 화면이면 센터인증 설정으로, 자체인증 화면이면 자체인증 설정으로 이동
             if (f instanceof AbstractCenterAuthMainFragment) {
                 startFragment(CenterAuthSettingFragment.class, null, R.string.fragment_id_center_auth_setting);
-            } else if (f instanceof AbstractSelfAuthMainFragment) {
-                startFragment(SelfAuthSettingFragment.class, null, R.string.fragment_id_self_auth_setting);
             }
+//            } else if (f instanceof AbstractSelfAuthMainFragment) {
+//                startFragment(SelfAuthSettingFragment.class, null, R.string.fragment_id_self_auth_setting);
+//            }
 
         });
 

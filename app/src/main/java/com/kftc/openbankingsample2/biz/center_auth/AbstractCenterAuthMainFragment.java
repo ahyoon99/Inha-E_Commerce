@@ -20,6 +20,7 @@ import com.kftc.openbankingsample2.common.data.BankAccount;
 import com.kftc.openbankingsample2.common.util.Utils;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * 센터인증 프래그먼트 추상 클래스
@@ -136,15 +137,36 @@ public class AbstractCenterAuthMainFragment extends AbstractMainFragment {
         });
     }
 
+    protected String showAccountDialogCustom() {
+        AtomicReference<String> result = null;
+        ArrayAdapter<BankAccount> bankAccountAdapter = new ArrayAdapter<>(context, R.layout.simple_list_item_divider, R.id.text1, AppData.centerAuthBankAccountList);
+        showAlertAccount(bankAccountAdapter, (parent, view, position, id) -> {
+
+            // 선택되면 해당 EditText 에 값을 입력.
+            BankAccount bankAccount = bankAccountAdapter.getItem(position);
+            result.set(bankAccount.getFintech_use_num());
+        });
+        return result.toString();
+    }
+
+
+
     // 은행거래고유번호(20자리)
     // 하루동안 유일성이 보장되어야함. 이용기관번호(10자리) + 생성주체구분코드(1자리, U:이용기관, O:오픈뱅킹) + 이용기관 부여번호(9자리)
     protected String setRandomBankTranId(EditText etBankTranId) {
-        String clientUseCode = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_USE_CODE);
+        String clientUseCode = "T991636280";
         String randomUnique9String = Utils.getCurrentTime();    // 이용기관 부여번호를 임시로 시간데이터 사용
         String result = String.format("%sU%s", clientUseCode, randomUnique9String);
         if (etBankTranId != null) {
             etBankTranId.setText(result);
         }
+        return result;
+    }
+
+    protected String setRandomBankTranIdCustom() {
+        String clientUseCode = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_USE_CODE);
+        String randomUnique9String = Utils.getCurrentTime();    // 이용기관 부여번호를 임시로 시간데이터 사용
+        String result = String.format("%sU%s", clientUseCode, randomUnique9String);
         return result;
     }
 

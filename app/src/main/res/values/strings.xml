@@ -1,4 +1,10 @@
 <resources>
+    <string name="fragment_create_qrcode_to_withdraw" translatable="false">QR코드생성</string>
+    <string name="fragment_id_seller" translatable="false">판매자 메인홈</string>
+    <string name="fragment_id_buyer" translatable="false">소비자 메인홈</string>
+    <string name="fragment_id_menu" translatable="false">메뉴 선택</string>
+
+    <!-- sample -->
     <string name="app_name" translatable="false">오픈뱅킹샘플</string>
 
     <string name="fragment_id_navi" translatable="false">navigation</string>
@@ -15,8 +21,9 @@
     <string name="fragment_id_self_api_call" translatable="false">자체인증 API호출</string>
     <string name="fragment_id_api_call_userme" translatable="false">사용자정보조회</string>
     <string name="fragment_id_api_call_balance" translatable="false">잔액조회</string>
-    <string name="fragment_id_api_call_transaction" translatable="false">거래내역조회</string>
+    <string name="fragment_id_api_call_transaction" translatable="false">거래 내역 조회</string>
     <string name="fragment_id_api_call_withdraw" translatable="false">출금이체</string>
+
     <string name="fragment_id_api_call_realname" translatable="false">계좌실명조회</string>
     <string name="fragment_id_api_call_deposit" translatable="false">입금이체</string>
     <string name="fragment_id_api_call_account" translatable="false">등록계좌조회</string>
@@ -150,6 +157,8 @@
     <string name="use_org_contact">이용기관연락처 : </string>
     <string name="use_org_email">담당자이메일주소 : </string>
     <string name="account_holder_name">예금주명 : </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
     <!--영문/한글 변환 끝-->

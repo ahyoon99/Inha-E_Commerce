@@ -8,7 +8,6 @@ import androidx.preference.PreferenceManager;
 
 import com.kftc.openbankingsample2.R;
 import com.kftc.openbankingsample2.biz.center_auth.util.CenterAuthUtils;
-import com.kftc.openbankingsample2.biz.self_auth.util.SelfAuthUtils;
 import com.kftc.openbankingsample2.common.Scope;
 import com.kftc.openbankingsample2.common.data.AccessToken;
 import com.kftc.openbankingsample2.common.data.BankAccount;
@@ -43,15 +42,12 @@ public class AppData extends Application {
 
         // 최초 로딩시 저장된 accessToken 로딩
         centerAuthAccessTokenList = CenterAuthUtils.getSavedCenterAuthTokenList();
-        selfAuthAccessTokenList = SelfAuthUtils.getSavedSelfAuthTokenList();
 
         // 최초 로딩시 저장된 bank account 로딩
         centerAuthBankAccountList = CenterAuthUtils.getSavedCenterAuthBankAccountList();
-        selfAuthBankAccountList = SelfAuthUtils.getSavedSelfAuthBankAccountList();
 
         // 설정 기본값 로딩(XXXXSettingFragment 기본값 적용)
         PreferenceManager.setDefaultValues(appContext, R.xml.fragment_center_auth_setting, true);
-        PreferenceManager.setDefaultValues(appContext, R.xml.fragment_self_auth_setting, true);
 
         /*
             유용한 오픈소스를 소개한다.

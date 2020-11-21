@@ -35,7 +35,10 @@ public class CenterAuthSettingFragment extends AbstractSettingFragment {
     private SwitchPreference CENTER_AUTH_IS_REAL;
     private SwitchPreference IS_DEV_LANG;
     private Preference INIT_BUTTON;
-
+    // 추가
+    private EditTextPreference CENTER_AUTH_CLIENT_ACCESS_TOKEN_TEST;
+    private EditTextPreference CENTER_AUTH_CLIENT_USER_SEQ_NUM_TEST;
+    //여기까지
     private EditTextPreference CENTER_AUTH_BASE_URI_TEST;
 
     private EditTextPreference CENTER_AUTH_CLIENT_ID_TEST;
@@ -88,7 +91,6 @@ public class CenterAuthSettingFragment extends AbstractSettingFragment {
             dialog.setPositiveButton("확인", (dialog1, which) -> {
                 Utils.removePref(context);
                 PreferenceManager.setDefaultValues(context, R.xml.fragment_center_auth_setting, true);
-                PreferenceManager.setDefaultValues(context, R.xml.fragment_self_auth_setting, true);
                 AppData.centerAuthAccessTokenList.clear();
                 AppData.centerAuthBankAccountList.clear();
                 AppData.selfAuthAccessTokenList.clear();
@@ -100,6 +102,15 @@ public class CenterAuthSettingFragment extends AbstractSettingFragment {
 
             return true;
         });
+
+        // 추가
+        CENTER_AUTH_CLIENT_ACCESS_TOKEN_TEST = (EditTextPreference) findPreference(CenterAuthConst.CENTER_AUTH_CLIENT_ACCESS_TOKEN +"_TEST");
+        CENTER_AUTH_CLIENT_ACCESS_TOKEN_TEST.setSummary(CENTER_AUTH_CLIENT_ACCESS_TOKEN_TEST.getText());
+        CENTER_AUTH_CLIENT_ACCESS_TOKEN_TEST.setOnPreferenceChangeListener(onChangeListener);
+
+        CENTER_AUTH_CLIENT_USER_SEQ_NUM_TEST = (EditTextPreference) findPreference(CenterAuthConst.CENTER_AUTH_CLIENT_USER_SEQ_NUM + "_TEST");
+        CENTER_AUTH_CLIENT_USER_SEQ_NUM_TEST.setSummary(CENTER_AUTH_CLIENT_USER_SEQ_NUM_TEST.getText());
+        CENTER_AUTH_CLIENT_USER_SEQ_NUM_TEST.setOnPreferenceChangeListener(onChangeListener);
 
         // 테스트서버 접속정보
         CENTER_AUTH_BASE_URI_TEST = (EditTextPreference) findPreference(CenterAuthConst.CENTER_AUTH_BASE_URI + "_TEST");
