@@ -14,7 +14,6 @@ import com.kftc.openbankingsample2.biz.center_auth.api.account_balance.CenterAut
 import com.kftc.openbankingsample2.biz.center_auth.api.account_transaction.CenterAuthAPIAccountTransactionRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.inquiry_realname.CenterAuthAPIInquiryRealNameFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.transfer_deposit.CenterAuthAPITransferDepositFragment;
-import com.kftc.openbankingsample2.biz.center_auth.api.transfer_withdraw.CenterAuthAPITransferWithdrawFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.user_me.CenterAuthAPIUserMeRequestFragment;
 
 public class NaviAPICallFragment extends AbstractNaviFragment {
@@ -73,7 +72,6 @@ public class NaviAPICallFragment extends AbstractNaviFragment {
         // 춭금이체
         view.findViewById(R.id.llWithdraw).setOnClickListener(v -> {
             activity.closeNavi();
-            activity.startFragment(CenterAuthAPITransferWithdrawFragment.class, args, R.string.fragment_id_api_call_withdraw);
         });
 
         // 입금이체

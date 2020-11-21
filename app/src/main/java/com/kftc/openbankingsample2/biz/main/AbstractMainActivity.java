@@ -93,6 +93,9 @@ public abstract class AbstractMainActivity extends AppCompatActivity {
             if (f instanceof AbstractCenterAuthMainFragment) {
                 startFragment(CenterAuthSettingFragment.class, null, R.string.fragment_id_center_auth_setting);
             }
+//            } else if (f instanceof AbstractSelfAuthMainFragment) {
+//                startFragment(SelfAuthSettingFragment.class, null, R.string.fragment_id_self_auth_setting);
+//            }
 
         });
 

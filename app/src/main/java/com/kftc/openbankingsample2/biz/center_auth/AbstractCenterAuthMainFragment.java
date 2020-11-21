@@ -142,6 +142,26 @@ public class AbstractCenterAuthMainFragment extends AbstractMainFragment {
         });
     }
 
+    protected void showAccountDialogCustom(AtomicReference<String> etFintechUseNum, EditText etBankCode, EditText etAccountNum) {
+        ArrayAdapter<BankAccount> bankAccountAdapter = new ArrayAdapter<>(context, R.layout.simple_list_item_divider, R.id.text1, AppData.centerAuthBankAccountList);
+        showAlertAccount(bankAccountAdapter, (parent, view, position, id) -> {
+
+            // 선택되면 해당 EditText 에 값을 입력.
+            BankAccount bankAccount = bankAccountAdapter.getItem(position);
+            if (bankAccount != null) {
+
+                if (etBankCode != null) {
+                    etBankCode.setText(bankAccount.getBank_code_std());
+                }
+
+                if (etAccountNum != null) {
+                    etAccountNum.setText(bankAccount.getAccountNum());
+                    etFintechUseNum.set(bankAccount.getFintech_use_num());
+                }
+            }
+        });
+    }
+
     protected String showAccountDialogCustom() {
         AtomicReference<String> result = null;
         ArrayAdapter<BankAccount> bankAccountAdapter = new ArrayAdapter<>(context, R.layout.simple_list_item_divider, R.id.text1, AppData.centerAuthBankAccountList);
@@ -159,7 +179,7 @@ public class AbstractCenterAuthMainFragment extends AbstractMainFragment {
     // 은행거래고유번호(20자리)
     // 하루동안 유일성이 보장되어야함. 이용기관번호(10자리) + 생성주체구분코드(1자리, U:이용기관, O:오픈뱅킹) + 이용기관 부여번호(9자리)
     protected String setRandomBankTranId(EditText etBankTranId) {
-        String clientUseCode = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_USE_CODE);
+        String clientUseCode = "T991636280";
         String randomUnique9String = Utils.getCurrentTime();    // 이용기관 부여번호를 임시로 시간데이터 사용
         String result = String.format("%sU%s", clientUseCode, randomUnique9String);
         if (etBankTranId != null) {

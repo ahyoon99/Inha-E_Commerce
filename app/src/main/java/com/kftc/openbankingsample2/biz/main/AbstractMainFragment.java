@@ -270,7 +270,6 @@ public abstract class AbstractMainFragment extends Fragment implements onKeyBack
         // 오류와 상관없이 일단 맨처음에는 기존 정보가 없을경우 user_seq_no 가 있으면 저장해둔다.
         String userSeqNo = Utils.getValueFromJson(responseJson, "user_seq_no");
         Utils.saveDataIfNotExist(CenterAuthConst.CENTER_AUTH_USER_SEQ_NO, userSeqNo);
-        //Utils.saveDataIfNotExist(SelfAuthConst.SELF_AUTH_USER_SEQ_NO, userSeqNo);
 
         if (!resMsg.isSuccess()) {
             handleApiFailure(resMsg, responseJson);

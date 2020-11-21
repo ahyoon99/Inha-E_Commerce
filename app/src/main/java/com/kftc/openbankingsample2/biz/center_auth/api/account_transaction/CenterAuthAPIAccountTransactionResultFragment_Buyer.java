@@ -17,9 +17,7 @@ import com.kftc.openbankingsample2.R;
 import com.kftc.openbankingsample2.biz.center_auth.AbstractCenterAuthMainFragment;
 import com.kftc.openbankingsample2.biz.center_auth.BuyerHomeFragment;
 import com.kftc.openbankingsample2.biz.center_auth.CenterAuthConst;
-import com.kftc.openbankingsample2.biz.center_auth.api.CenterAuthAPIFragment;
 import com.kftc.openbankingsample2.biz.center_auth.http.CenterAuthApiRetrofitAdapter;
-import com.kftc.openbankingsample2.biz.center_auth.util.CenterAuthUtils;
 import com.kftc.openbankingsample2.common.data.ApiCallAccountTransactionResponse;
 import com.kftc.openbankingsample2.common.data.ResMsg;
 import com.kftc.openbankingsample2.common.data.Transaction;
@@ -37,7 +35,7 @@ import retrofit2.Response;
 /**
  * 거래내역조회 결과, 송금인정보조회 결과
  */
-public class CenterAuthAPIAccountTransactionResultFragment extends AbstractCenterAuthMainFragment {
+public class CenterAuthAPIAccountTransactionResultFragment_Buyer extends AbstractCenterAuthMainFragment {
 
     // context
     private Context context;
@@ -89,7 +87,7 @@ public class CenterAuthAPIAccountTransactionResultFragment extends AbstractCente
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.addItemDecoration(new KmRecyclerViewDividerHeight(30));
 
-        view.findViewById(R.id.btnNext).setOnClickListener(v -> onBackPressed());
+        view.findViewById(R.id.btnNext).setOnClickListener(v -> goNext());
 
         initData();
     }

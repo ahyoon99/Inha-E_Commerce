@@ -9,7 +9,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.kftc.openbankingsample2"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 28
         versionCode 3
         versionName "2.2.2"     // 버전은 오픈뱅킹공동업무 API 명세서 버전에 따름.
@@ -42,6 +42,9 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$androidxLibVer"
     implementation "com.google.android.material:material:$androidxLibVer"
     implementation "androidx.preference:preference:$androidxLibVer"
+
+    implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
+    implementation 'com.google.zxing:core:3.3.0'
 
     /**
      *  오픈소스명 : retrofit
