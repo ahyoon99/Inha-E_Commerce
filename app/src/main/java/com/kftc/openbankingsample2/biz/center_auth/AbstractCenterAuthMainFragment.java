@@ -137,6 +137,26 @@ public class AbstractCenterAuthMainFragment extends AbstractMainFragment {
         });
     }
 
+    protected void showAccountDialogCustom(AtomicReference<String> etFintechUseNum, EditText etBankCode, EditText etAccountNum) {
+        ArrayAdapter<BankAccount> bankAccountAdapter = new ArrayAdapter<>(context, R.layout.simple_list_item_divider, R.id.text1, AppData.centerAuthBankAccountList);
+        showAlertAccount(bankAccountAdapter, (parent, view, position, id) -> {
+
+            // 선택되면 해당 EditText 에 값을 입력.
+            BankAccount bankAccount = bankAccountAdapter.getItem(position);
+            if (bankAccount != null) {
+
+                if (etBankCode != null) {
+                    etBankCode.setText(bankAccount.getBank_code_std());
+                }
+
+                if (etAccountNum != null) {
+                    etAccountNum.setText(bankAccount.getAccountNum());
+                    etFintechUseNum.set(bankAccount.getFintech_use_num());
+                }
+            }
+        });
+    }
+
     protected String showAccountDialogCustom() {
         AtomicReference<String> result = null;
         ArrayAdapter<BankAccount> bankAccountAdapter = new ArrayAdapter<>(context, R.layout.simple_list_item_divider, R.id.text1, AppData.centerAuthBankAccountList);

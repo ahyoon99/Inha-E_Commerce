@@ -5,21 +5,29 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.gson.Gson;
 import com.kftc.openbankingsample2.R;
 import com.kftc.openbankingsample2.biz.center_auth.AbstractCenterAuthMainFragment;
 import com.kftc.openbankingsample2.biz.center_auth.CenterAuthConst;
+import com.kftc.openbankingsample2.biz.center_auth.api.account_transaction.CenterAuthAPIAccountTransactionResultFragment_Buyer;
 import com.kftc.openbankingsample2.biz.center_auth.http.CenterAuthApiRetrofitAdapter;
+import com.kftc.openbankingsample2.biz.center_auth.util.CenterAuthUtils;
+import com.kftc.openbankingsample2.common.application.AppData;
+import com.kftc.openbankingsample2.common.data.ApiCallAccountTransactionResponse;
+import com.kftc.openbankingsample2.common.data.BankAccount;
 import com.kftc.openbankingsample2.common.util.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class CenterAuthAPITransferWithdrawCheckFragment extends AbstractCenterAuthMainFragment {
     // context
@@ -67,15 +75,42 @@ public class CenterAuthAPITransferWithdrawCheckFragment extends AbstractCenterAu
         EditText etTranAmt = view.findViewById(R.id.trans_amt);
         etTranAmt.setText(tran_amt);
 
+        EditText etRecvClientNum = view.findViewById(R.id.recv_client_num);
+        etRecvClientNum.setText(recv_client_account_num);
+
+        EditText etreqClientNum = view.findViewById(R.id.req_client_num);
+        AtomicReference<String> etfintechUseNum = new AtomicReference<>("");
+
+        View.OnClickListener onClickListener = v -> showAccountDialogCustom(etfintechUseNum, null, etreqClientNum);
+        view.findViewById(R.id.btnSelectFintechUseNum).setOnClickListener(onClickListener);
+
+//        AtomicReference<String> etfintechUseNum = new AtomicReference<>("");
+//        AtomicReference<String> etreqClientNumString = new AtomicReference<>("");
+//
+//        view.findViewById(R.id.btnSelectFintechUseNum).setOnClickListener(v -> {
+//            ArrayAdapter<BankAccount> bankAccountAdapter = new ArrayAdapter<>(context, R.layout.simple_list_item_divider, R.id.text1, AppData.centerAuthBankAccountList);
+//            showAlertAccount(bankAccountAdapter, (parent, view, position, id) -> {
+//                // 선택되면 해당 EditText 에 값을 입력.
+//                BankAccount bankAccount = bankAccountAdapter.getItem(position);
+//                etfintechUseNum.set(bankAccount.getFintech_use_num());
+//                etreqClientNumString.set(bankAccount.getAccount_num());
+//            });
+//        });
+//
+//        etreqClientNum.setText(etreqClientNumString.toString());
+
+
         // 출금이체 요청
         view.findViewById(R.id.btnNext).setOnClickListener(v -> {
 
             // 직전내용 저장
-            String accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAwNzYyNDM2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2MTMyMTU2NjAsImp0aSI6IjI1Nzg4MDEwLWZkZTItNDU2ZS1iYzVhLThkZGZiZGY2MjMzMiJ9.uk4NE6y9kHZ6sHAHIcl26STcWRp2up7HCl2plJ5eVw0".trim();
+            String accessToken = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_ACCESS_TOKEN);
             Utils.saveData(CenterAuthConst.CENTER_AUTH_ACCESS_TOKEN, accessToken);
             String cntrAccountNum = "8487279403";
             Utils.saveData(CenterAuthConst.CENTER_AUTH_CNTR_ACCOUNT_NUM, cntrAccountNum);
-            String fintechUseNum = "199163628057884692187614";
+            //String fintechUseNum = "199163628057884692187614";
+            //String fintechUseNum = etFintechUseNum.getText().toString();
+            String fintechUseNum = etfintechUseNum.toString();
             Utils.saveData(CenterAuthConst.CENTER_AUTH_FINTECH_USE_NUM, fintechUseNum);
             String reqClientName = "유영훈";
             Utils.saveData(CenterAuthConst.CENTER_AUTH_REQ_CLIENT_NAME, reqClientName);
@@ -110,7 +145,51 @@ public class CenterAuthAPITransferWithdrawCheckFragment extends AbstractCenterAu
             showProgress();
             CenterAuthApiRetrofitAdapter.getInstance()
                     .transferWithdrawFinNum("Bearer " + accessToken, paramMap)
-                    .enqueue(super.handleResponse("tran_amt", "이체완료!! 이체금액"));
+                    .enqueue(super.handleResponse("tran_amt", "이체완료!! 이체금액", responseJson -> {
+
+                                String BankTranId = setRandomBankTranIdCustom();
+                                String inquiryType = "A";
+                                String inquiryBase = "D";
+                                String fromData = "20180101";
+                                String fromTime = "";
+                                String toDate = Utils.getDateString8(0);
+                                String toTime = "";
+                                String sortOrder = "D";
+                                String tranDtime = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(new Date());
+                                String beforeInquiryTraceInfo = "123";
+
+                                 // 요청전문
+                                HashMap<String, String> paramMap2 = new HashMap<>();
+                                paramMap2.put("bank_tran_id", BankTranId);
+                                paramMap2.put("fintech_use_num", fintechUseNum);
+                                paramMap2.put("inquiry_type", inquiryType);
+                                paramMap2.put("inquiry_base", inquiryBase);
+                                paramMap2.put("from_date", fromData);
+                                paramMap2.put("from_time", fromTime);
+                                paramMap2.put("to_date", toDate);
+                                paramMap2.put("to_time", toTime);
+                                paramMap2.put("sort_order", sortOrder);
+                                paramMap2.put("tran_dtime", tranDtime);
+                                paramMap2.put("befor_inquiry_trace_info", beforeInquiryTraceInfo);
+
+                                showProgress();
+                                CenterAuthApiRetrofitAdapter.getInstance()
+                                        .accountTrasactionListFinNum("Bearer " + accessToken, paramMap2)
+                                        .enqueue(super.handleResponse("page_record_cnt", "현재페이지 조회건수", responseJson2 -> {
+
+                                            // 성공하면 결과화면으로 이동
+                                                    ApiCallAccountTransactionResponse result =
+                                                            new Gson().fromJson(responseJson2, ApiCallAccountTransactionResponse.class);
+                                                    args.putParcelable("result", result);
+                                                    args.putSerializable("request", paramMap2);
+                                                    args.putString(CenterAuthConst.BUNDLE_KEY_ACCESS_TOKEN, accessToken);
+
+                                                    startFragment(CenterAuthAPIAccountTransactionResultFragment_Buyer.class, args, R.string.fragment_id_api_call_transaction);
+                                        })
+                                );
+                            })
+                    );
+
         });
 
         // 취소
