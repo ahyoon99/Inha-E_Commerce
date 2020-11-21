@@ -3,6 +3,7 @@
     <string name="fragment_id_seller" translatable="false">판매자 메인홈</string>
     <string name="fragment_id_buyer" translatable="false">소비자 메인홈</string>
     <string name="fragment_id_menu" translatable="false">메뉴 선택</string>
+    <string name="account_number" translatable="false">계 좌 번 호  : </string>
 
     <!-- sample -->
     <string name="app_name" translatable="false">오픈뱅킹샘플</string>

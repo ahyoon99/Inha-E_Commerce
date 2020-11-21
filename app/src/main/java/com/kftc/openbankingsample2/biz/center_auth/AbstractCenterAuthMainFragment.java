@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.kftc.openbankingsample2.R;
+import com.kftc.openbankingsample2.biz.center_auth.http.CenterAuthApiRetrofitAdapter;
 import com.kftc.openbankingsample2.biz.center_auth.util.CenterAuthUtils;
 import com.kftc.openbankingsample2.biz.main.AbstractMainFragment;
 import com.kftc.openbankingsample2.biz.main.MainActivity;
@@ -19,7 +20,11 @@ import com.kftc.openbankingsample2.common.data.AccessToken;
 import com.kftc.openbankingsample2.common.data.BankAccount;
 import com.kftc.openbankingsample2.common.util.Utils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -132,6 +137,26 @@ public class AbstractCenterAuthMainFragment extends AbstractMainFragment {
 
                 if (etAccountNum != null) {
                     etAccountNum.setText(bankAccount.getAccountNum());
+                }
+            }
+        });
+    }
+
+    protected void showAccountDialogCustom(AtomicReference<String> etFintechUseNum, EditText etBankCode, EditText etAccountNum) {
+        ArrayAdapter<BankAccount> bankAccountAdapter = new ArrayAdapter<>(context, R.layout.simple_list_item_divider, R.id.text1, AppData.centerAuthBankAccountList);
+        showAlertAccount(bankAccountAdapter, (parent, view, position, id) -> {
+
+            // 선택되면 해당 EditText 에 값을 입력.
+            BankAccount bankAccount = bankAccountAdapter.getItem(position);
+            if (bankAccount != null) {
+
+                if (etBankCode != null) {
+                    etBankCode.setText(bankAccount.getBank_code_std());
+                }
+
+                if (etAccountNum != null) {
+                    etAccountNum.setText(bankAccount.getAccountNum());
+                    etFintechUseNum.set(bankAccount.getFintech_use_num());
                 }
             }
         });

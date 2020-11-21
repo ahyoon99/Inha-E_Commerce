@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.kftc.openbankingsample2.R;
 import com.kftc.openbankingsample2.biz.center_auth.AbstractCenterAuthMainFragment;
+import com.kftc.openbankingsample2.biz.center_auth.BuyerHomeFragment;
 import com.kftc.openbankingsample2.biz.center_auth.CenterAuthConst;
 import com.kftc.openbankingsample2.biz.center_auth.api.CenterAuthAPIFragment;
 import com.kftc.openbankingsample2.biz.center_auth.http.CenterAuthApiRetrofitAdapter;
@@ -170,5 +171,9 @@ public class CenterAuthAPIAccountTransactionResultFragment extends AbstractCente
             showAlert("통신실패", "서버 접속에 실패하였습니다.", t.getMessage());
         }
     };
+
+    void goNext(){
+        startFragment(BuyerHomeFragment.class, args, R.string.fragment_id_buyer);
+    }
 
 }

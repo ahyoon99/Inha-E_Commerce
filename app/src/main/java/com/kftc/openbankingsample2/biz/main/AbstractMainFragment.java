@@ -179,6 +179,8 @@ public abstract class AbstractMainFragment extends Fragment implements onKeyBack
         return handleResponse(key, desc, true, listener);
     }
 
+
+
     // 통신처리(key: 응답에서 추출하여 경고창에 보여줄 key, desc: 경고창에 보여줄 설명, enableAlert: 경고창을 띄울지 여부, listener: 성공시 실행할 로직)
     protected Callback<Map> handleResponse(String key, String desc, boolean enableAlert, NetListener listener) {
         return new Callback<Map>() {
@@ -254,6 +256,7 @@ public abstract class AbstractMainFragment extends Fragment implements onKeyBack
             showAlert(title, rspMessage, responseJson);
         }
     }
+
 
     // 통신처리
     protected void handleHttpSuccess(Response<Map> response, String key, String desc, boolean enableAlert, NetListener listener) {
