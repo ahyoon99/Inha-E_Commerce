@@ -39,7 +39,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /**
- * 센터인증 메인화면
+ * 소비자 메인화면
  */
 public class BuyerHomeFragment extends AbstractCenterAuthMainFragment {
 
@@ -74,14 +74,17 @@ public class BuyerHomeFragment extends AbstractCenterAuthMainFragment {
         // 계좌등록
         view.findViewById(R.id.btnAuthToken).setOnClickListener(v -> startFragment(CenterAuthFragment.class, args, R.string.fragment_id_center_auth));
 
+        // QR 스캔
         view.findViewById(R.id.btnScanQRPage).setOnClickListener(v -> withdrawOnClick());
 
         // 사용자 정보조회
         view.findViewById(R.id.btnInqrUserInfoPage).setOnClickListener(v -> {
 
+            // 설정에서 access token과 user sequence number 가져옴
             String accessToken =  CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_ACCESS_TOKEN);
             String userSeqNo = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_USER_SEQ_NUM);
 
+            // 요청 전문
             HashMap<String, String> paramMap = new HashMap<>();
             paramMap.put("user_seq_no", userSeqNo);
 
@@ -94,6 +97,7 @@ public class BuyerHomeFragment extends AbstractCenterAuthMainFragment {
                                 ApiCallUserMeResponse result = new Gson().fromJson(responseJson, ApiCallUserMeResponse.class);
                                 args.putParcelable("result", result);
 
+                                // CenterAuthAPIUserMeResultFragment로 이동
                                 startFragment(CenterAuthAPIUserMeResultFragment.class, args, R.string.fragment_id_api_call_userme);
                             })
                     );
@@ -104,13 +108,18 @@ public class BuyerHomeFragment extends AbstractCenterAuthMainFragment {
 
         // 거래내역조회
         view.findViewById(R.id.btnInqrTranRecPage).setOnClickListener(v -> {
-            ArrayAdapter<BankAccount> bankAccountAdapter = new ArrayAdapter<>(context, R.layout.simple_list_item_divider, R.id.text1, AppData.centerAuthBankAccountList);
+
+            // 사용자의 계좌 목록을 불러온 후 선택창 띄우기
+            ArrayAdapter<BankAccount> bankAccountAdapter =
+                    new ArrayAdapter<>(context, R.layout.simple_list_item_divider, R.id.text1, AppData.centerAuthBankAccountList);
             showAlertAccount(bankAccountAdapter, (parent, view, position, id) -> {
 
-                // 선택되면 해당 EditText 에 값을 입력.
+                // 선택창에서 선택한 계좌 정보 가져오기
                 BankAccount bankAccount = bankAccountAdapter.getItem(position);
+                // 해당 fintech number 가져오기
                 String fintechUseNum = bankAccount.getFintech_use_num();
 
+                // API 호출에 필요한 parameter값들 초기화(설정)
                 String accessToken =  CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_ACCESS_TOKEN);
                 String BankTranId = setRandomBankTranIdCustom();
                 String inquiryType = "A";
@@ -149,6 +158,7 @@ public class BuyerHomeFragment extends AbstractCenterAuthMainFragment {
                                     args.putSerializable("request", paramMap);
                                     args.putString(CenterAuthConst.BUNDLE_KEY_ACCESS_TOKEN, accessToken);
 
+                                    // CenterAuthAPIAccountTransactionResultFragment로 이동
                                     startFragment(CenterAuthAPIAccountTransactionResultFragment.class, args, R.string.fragment_id_api_call_transaction);
                                 })
                         );
@@ -156,17 +166,13 @@ public class BuyerHomeFragment extends AbstractCenterAuthMainFragment {
             });
         });
 
-        // API 거래
-        //view.findViewById(R.id.btnAPICallMenu).setOnClickListener(v -> startFragment(CenterAuthAPIFragment.class, args, R.string.fragment_id_center_api_call));
-
     }
 
     public void withdrawOnClick() {
         IntentIntegrator intentIntegrator = new IntentIntegrator(this.activity);
         intentIntegrator.setBeepEnabled(false);
         intentIntegrator.forSupportFragment(BuyerHomeFragment.this).initiateScan();
-//        Intent intent = new Intent(getActivity(), CenterAuthAPITransferWithdrawActivity.class);
-//        startActivity(intent);
+
     }
 
     @Override
@@ -188,7 +194,6 @@ public class BuyerHomeFragment extends AbstractCenterAuthMainFragment {
             }
 
             else {
-
             }
         }
 

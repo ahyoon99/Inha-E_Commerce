@@ -65,6 +65,7 @@ public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFr
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+         // 메뉴 창에서 가격 받아오기
         total_price = getArguments().getString("total_price_arg");
         view = inflater.inflate(R.layout.fragment_center_auth_create_qrcode, container, false);
         initView();
@@ -73,34 +74,42 @@ public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFr
 
     void initView() {
 
-        mTextViewCountDown = (TextView) view.findViewById(R.id.TimerCountDownText);
-        mButtonComplete = view.findViewById(R.id.btnCompleteQRCreation);
-        mButtonReset = view.findViewById(R.id.btnExtendQRTime);
+        mTextViewCountDown = (TextView) view.findViewById(R.id.TimerCountDownText); // QR 코드가 유지되는 시간을 나타내는 TextView
+        mButtonComplete = view.findViewById(R.id.btnCompleteQRCreation); // 완료 버튼
+        mButtonReset = view.findViewById(R.id.btnExtendQRTime); // 시간 연장 버튼
 
+        // 완료 버튼을 누르면
         mButtonComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 시간을 멈추고 알림을 띄운다
                 pauseTimer();
                 showAlertDialog();
             }
         });
 
-        mButtonReset.setOnClickListener(new View.OnClickListener() { // 시간 연장하기 버튼
+        // 시간 연장 버튼을 누르면
+        mButtonReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 시간을 30초로 재설정한다
                 resetTimer();
             }
         });
 
+        // 이 화면에 들어오면 시간을 처음부터 줄어들어야 한다
         startTimer();
         updateCountDownText();
 
+        // QR 코드 이미지
         qrImage = view.findViewById(R.id.QRimageView);
 
+        // QR 만들기
         makeQR();
 
     }
 
+    // Timer를 시작한다
     private void startTimer() {
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
@@ -119,11 +128,13 @@ public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFr
         mTimerRunning = true;
     }
 
+    // Timer를 멈춘다
     private void pauseTimer() {
         mCountDownTimer.cancel();
         mTimerRunning = false;
     }
 
+    // Timer를 초기화 한다
     private void resetTimer() {
         mTimeLeftInMillis = START_TIME_IN_MILLIS;
         updateCountDownText();
@@ -131,6 +142,7 @@ public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFr
         startTimer();
     }
 
+    // Timer를 1초에 1씩 줄어든게 한다
     private void updateCountDownText() {
 
         int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
@@ -140,6 +152,7 @@ public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFr
         mTextViewCountDown.setText(timeLeftFormatted);
     }
 
+    // 완료 버튼을 누르면 이 함수 실행 - alertDialog를 띄운다
     void showAlertDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -156,7 +169,9 @@ public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFr
         builder.show();
     }
 
+    // QR 코드를 생성한다
     public void makeQR() {
+        // 이전의 메뉴 선택 화면에서의 total_price를 가져와 QR 코드를 만든다
         String data = total_price + " 어플이름-입금 김오픈 097 232000067812";
         /*
         *금액 1000

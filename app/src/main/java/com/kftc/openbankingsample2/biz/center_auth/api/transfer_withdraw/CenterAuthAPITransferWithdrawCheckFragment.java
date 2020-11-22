@@ -81,35 +81,19 @@ public class CenterAuthAPITransferWithdrawCheckFragment extends AbstractCenterAu
         EditText etreqClientNum = view.findViewById(R.id.req_client_num);
         AtomicReference<String> etfintechUseNum = new AtomicReference<>("");
 
+        // 출금 계좌 선택 버튼을 누르면 계좌 선택 창이 뜨고(showAccountDialogCustom), 계좌를 선택하면 해당 fintech 번호와 해당 계좌번호가 etfintechUseNum과 etreqClientMum에 설정된다
         View.OnClickListener onClickListener = v -> showAccountDialogCustom(etfintechUseNum, null, etreqClientNum);
         view.findViewById(R.id.btnSelectFintechUseNum).setOnClickListener(onClickListener);
-
-//        AtomicReference<String> etfintechUseNum = new AtomicReference<>("");
-//        AtomicReference<String> etreqClientNumString = new AtomicReference<>("");
-//
-//        view.findViewById(R.id.btnSelectFintechUseNum).setOnClickListener(v -> {
-//            ArrayAdapter<BankAccount> bankAccountAdapter = new ArrayAdapter<>(context, R.layout.simple_list_item_divider, R.id.text1, AppData.centerAuthBankAccountList);
-//            showAlertAccount(bankAccountAdapter, (parent, view, position, id) -> {
-//                // 선택되면 해당 EditText 에 값을 입력.
-//                BankAccount bankAccount = bankAccountAdapter.getItem(position);
-//                etfintechUseNum.set(bankAccount.getFintech_use_num());
-//                etreqClientNumString.set(bankAccount.getAccount_num());
-//            });
-//        });
-//
-//        etreqClientNum.setText(etreqClientNumString.toString());
 
 
         // 출금이체 요청
         view.findViewById(R.id.btnNext).setOnClickListener(v -> {
 
-            // 직전내용 저장
+            // API 호출에 필요한 파라미터들 설정
             String accessToken = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_ACCESS_TOKEN);
             Utils.saveData(CenterAuthConst.CENTER_AUTH_ACCESS_TOKEN, accessToken);
             String cntrAccountNum = "8487279403";
             Utils.saveData(CenterAuthConst.CENTER_AUTH_CNTR_ACCOUNT_NUM, cntrAccountNum);
-            //String fintechUseNum = "199163628057884692187614";
-            //String fintechUseNum = etFintechUseNum.getText().toString();
             String fintechUseNum = etfintechUseNum.toString();
             Utils.saveData(CenterAuthConst.CENTER_AUTH_FINTECH_USE_NUM, fintechUseNum);
             String reqClientName = "유영훈";
@@ -147,6 +131,7 @@ public class CenterAuthAPITransferWithdrawCheckFragment extends AbstractCenterAu
                     .transferWithdrawFinNum("Bearer " + accessToken, paramMap)
                     .enqueue(super.handleResponse("tran_amt", "이체완료!! 이체금액", responseJson -> {
 
+                                // API 호출을 위해 파라미터 변수 초기화(설정)
                                 String BankTranId = setRandomBankTranIdCustom();
                                 String inquiryType = "A";
                                 String inquiryBase = "D";

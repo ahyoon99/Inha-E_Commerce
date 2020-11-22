@@ -156,6 +156,7 @@ public class AbstractCenterAuthMainFragment extends AbstractMainFragment {
 
                 if (etAccountNum != null) {
                     etAccountNum.setText(bankAccount.getAccountNum());
+                    // etFintechUseNum은 Atomi형 변수. etFintechUseNum에 해당 계좌의 fintech 이용 번호를 부여한다
                     etFintechUseNum.set(bankAccount.getFintech_use_num());
                 }
             }

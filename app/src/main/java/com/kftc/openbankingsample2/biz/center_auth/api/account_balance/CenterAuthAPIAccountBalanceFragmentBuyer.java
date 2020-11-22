@@ -85,6 +85,7 @@ public class CenterAuthAPIAccountBalanceFragmentBuyer extends AbstractCenterAuth
             String fintechUseNum = etFintechUseNum.getText().toString();
             Utils.saveData(CenterAuthConst.CENTER_AUTH_FINTECH_USE_NUM, fintechUseNum);
 
+
             String userSeqNo = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_USER_SEQ_NUM);
 
             // 요청전문
