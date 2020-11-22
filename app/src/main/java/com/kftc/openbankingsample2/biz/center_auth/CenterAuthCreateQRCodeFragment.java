@@ -28,7 +28,7 @@ import java.util.Locale;
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
-public class fragment_center_auth_create_qrcode extends AbstractCenterAuthMainFragment {
+public class CenterAuthCreateQRCodeFragment extends AbstractCenterAuthMainFragment {
     // context
     private Context context;
 

@@ -66,30 +66,34 @@ public class CenterAuthAPITransferWithdrawCheckFragment extends AbstractCenterAu
         String recv_client_code = QRInfo[3];
         String recv_client_account_num = QRInfo[4];
 
+        // 요청인 이름
         EditText etReqClntName = view.findViewById(R.id.req_client_name);
-        etReqClntName.setText("유영훈");
+        etReqClntName.setText("서민균");
 
+        // 수취인 이름
         EditText etRecvClntName = view.findViewById(R.id.recv_client_name);
         etRecvClntName.setText(recv_client_name);
 
+        // 거래 금액
         EditText etTranAmt = view.findViewById(R.id.trans_amt);
         etTranAmt.setText(tran_amt);
 
+        // 수취인 번호
         EditText etRecvClientNum = view.findViewById(R.id.recv_client_num);
         etRecvClientNum.setText(recv_client_account_num);
 
+        // 요청인 번호
         EditText etreqClientNum = view.findViewById(R.id.req_client_num);
         AtomicReference<String> etfintechUseNum = new AtomicReference<>("");
 
-        // 출금 계좌 선택 버튼을 누르면 계좌 선택 창이 뜨고(showAccountDialogCustom), 계좌를 선택하면 해당 fintech 번호와 해당 계좌번호가 etfintechUseNum과 etreqClientMum에 설정된다
+        // 핀테크 이용 번호 선택 (계좌 선택)
         View.OnClickListener onClickListener = v -> showAccountDialogCustom(etfintechUseNum, null, etreqClientNum);
         view.findViewById(R.id.btnSelectFintechUseNum).setOnClickListener(onClickListener);
-
 
         // 출금이체 요청
         view.findViewById(R.id.btnNext).setOnClickListener(v -> {
 
-            // API 호출에 필요한 파라미터들 설정
+            // 직전내용 저장
             String accessToken = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_ACCESS_TOKEN);
             Utils.saveData(CenterAuthConst.CENTER_AUTH_ACCESS_TOKEN, accessToken);
             String cntrAccountNum = "8487279403";
@@ -127,11 +131,12 @@ public class CenterAuthAPITransferWithdrawCheckFragment extends AbstractCenterAu
             paramMap.put("recv_client_account_num", recv_client_account_num);
 
             showProgress();
+
+            // Retrofit 오픈소스 이용하여 출금이체 API 호출
             CenterAuthApiRetrofitAdapter.getInstance()
                     .transferWithdrawFinNum("Bearer " + accessToken, paramMap)
                     .enqueue(super.handleResponse("tran_amt", "이체완료!! 이체금액", responseJson -> {
 
-                                // API 호출을 위해 파라미터 변수 초기화(설정)
                                 String BankTranId = setRandomBankTranIdCustom();
                                 String inquiryType = "A";
                                 String inquiryBase = "D";
@@ -158,6 +163,8 @@ public class CenterAuthAPITransferWithdrawCheckFragment extends AbstractCenterAu
                                 paramMap2.put("befor_inquiry_trace_info", beforeInquiryTraceInfo);
 
                                 showProgress();
+
+                                // Retrofit 이용하여 거래 내역 조회 API 호출
                                 CenterAuthApiRetrofitAdapter.getInstance()
                                         .accountTrasactionListFinNum("Bearer " + accessToken, paramMap2)
                                         .enqueue(super.handleResponse("page_record_cnt", "현재페이지 조회건수", responseJson2 -> {
@@ -169,6 +176,7 @@ public class CenterAuthAPITransferWithdrawCheckFragment extends AbstractCenterAu
                                                     args.putSerializable("request", paramMap2);
                                                     args.putString(CenterAuthConst.BUNDLE_KEY_ACCESS_TOKEN, accessToken);
 
+                                                    // 거래 내역 조회 창으로 이동
                                                     startFragment(CenterAuthAPIAccountTransactionResultFragment_Buyer.class, args, R.string.fragment_id_api_call_transaction);
                                         })
                                 );

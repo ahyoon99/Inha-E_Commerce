@@ -12,8 +12,6 @@ import androidx.annotation.Nullable;
 import com.kftc.openbankingsample2.R;
 import com.kftc.openbankingsample2.biz.center_auth.api.account_balance.CenterAuthAPIAccountBalanceFragmentSeller;
 import com.kftc.openbankingsample2.biz.center_auth.api.account_transaction.CenterAuthAPIAccountTransactionRequestFragment;
-import com.kftc.openbankingsample2.biz.center_auth.api.inquiry_realname.CenterAuthAPIInquiryRealNameFragment;
-import com.kftc.openbankingsample2.biz.center_auth.api.transfer_deposit.CenterAuthAPITransferDepositFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.user_me.CenterAuthAPIUserMeRequestFragment;
 
 public class NaviAPICallFragment extends AbstractNaviFragment {
@@ -63,21 +61,10 @@ public class NaviAPICallFragment extends AbstractNaviFragment {
             activity.startFragment(CenterAuthAPIAccountTransactionRequestFragment.class, args, R.string.fragment_id_api_call_transaction);
         });
 
-        // 계좌실명조회
-        view.findViewById(R.id.llRealName).setOnClickListener(v -> {
-            activity.closeNavi();
-            activity.startFragment(CenterAuthAPIInquiryRealNameFragment.class, args, R.string.fragment_id_api_call_realname);
-        });
 
         // 춭금이체
         view.findViewById(R.id.llWithdraw).setOnClickListener(v -> {
             activity.closeNavi();
-        });
-
-        // 입금이체
-        view.findViewById(R.id.llDeposit).setOnClickListener(v -> {
-            activity.closeNavi();
-            activity.startFragment(CenterAuthAPITransferDepositFragment.class, args, R.string.fragment_id_api_call_deposit);
         });
 
     }

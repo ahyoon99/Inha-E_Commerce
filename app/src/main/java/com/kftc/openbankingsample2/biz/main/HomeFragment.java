@@ -26,7 +26,7 @@ import timber.log.Timber;
 import com.kftc.openbankingsample2.BuildConfig;
 
 /**
- * 센터인증과 자체인증을 선택하는 앱의 메인화면
+ * 판매자와 소비자를  선택하는 앱의 메인화면
  */
 public class HomeFragment extends AbstractCenterAuthMainFragment {
 
@@ -57,10 +57,10 @@ public class HomeFragment extends AbstractCenterAuthMainFragment {
 
     private void initView() {
 
-        // 센터인증
+        // 판메자 메인 홈
         view.findViewById(R.id.btnSellerMain).setOnClickListener(v -> startFragment(SellerHomeFragment.class, args, R.string.fragment_id_seller));
 
-        // 자체인증
+        // 소비자 메인 홈
         view.findViewById(R.id.btnBuyerMain).setOnClickListener(v -> startFragment(BuyerHomeFragment.class, args, R.string.fragment_id_buyer));
 
         // 하단 버전표시

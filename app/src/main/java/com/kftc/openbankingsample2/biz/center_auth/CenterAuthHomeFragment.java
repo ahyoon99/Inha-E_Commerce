@@ -10,8 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.kftc.openbankingsample2.R;
-import com.kftc.openbankingsample2.biz.center_auth.api.CenterAuthAPIFragment;
-import com.kftc.openbankingsample2.biz.center_auth.auth.CenterAuthFragment;
 import com.kftc.openbankingsample2.biz.main.HomeFragment;
 
 /**
@@ -47,10 +45,10 @@ public class CenterAuthHomeFragment extends AbstractCenterAuthMainFragment {
     private void initView() {
 
         // 계좌등록
-        view.findViewById(R.id.btnAuthToken).setOnClickListener(v -> startFragment(CenterAuthFragment.class, args, R.string.fragment_id_center_auth));
+        // view.findViewById(R.id.btnAuthToken).setOnClickListener(v -> startFragment(CenterAuthFragment.class, args, R.string.fragment_id_center_auth));
 
         // API 거래
-        view.findViewById(R.id.btnAPICallMenu).setOnClickListener(v -> startFragment(CenterAuthAPIFragment.class, args, R.string.fragment_id_center_api_call));
+        // view.findViewById(R.id.btnAPICallMenu).setOnClickListener(v -> startFragment(CenterAuthAPIFragment.class, args, R.string.fragment_id_center_api_call));
 
     }
 

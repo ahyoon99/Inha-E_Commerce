@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,11 +13,9 @@ import androidx.annotation.Nullable;
 import com.google.gson.Gson;
 import com.kftc.openbankingsample2.R;
 import com.kftc.openbankingsample2.biz.center_auth.api.account_balance.CenterAuthAPIAccountBalanceFragmentSeller;
-import com.kftc.openbankingsample2.biz.center_auth.api.account_transaction.CenterAuthAPIAccountTransactionRequestFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.account_transaction.CenterAuthAPIAccountTransactionResultFragment;
-import com.kftc.openbankingsample2.biz.center_auth.api.my_menu;
+import com.kftc.openbankingsample2.biz.center_auth.api.MyMenuFragment;
 import com.kftc.openbankingsample2.biz.center_auth.api.user_me.CenterAuthAPIUserMeResultFragment;
-import com.kftc.openbankingsample2.biz.center_auth.auth.CenterAuthFragment;
 import com.kftc.openbankingsample2.biz.center_auth.http.CenterAuthApiRetrofitAdapter;
 import com.kftc.openbankingsample2.biz.center_auth.util.CenterAuthUtils;
 import com.kftc.openbankingsample2.biz.main.HomeFragment;
@@ -34,7 +31,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 /**
- * 센터인증 메인화면
+ * 판매자  메인화면
  */
 public class SellerHomeFragment extends AbstractCenterAuthMainFragment {
 
@@ -64,9 +61,6 @@ public class SellerHomeFragment extends AbstractCenterAuthMainFragment {
     }
 
     private void initView() {
-
-        // 계좌등록
-        view.findViewById(R.id.btnAuthToken).setOnClickListener(v -> startFragment(CenterAuthFragment.class, args, R.string.fragment_id_center_auth));
 
         // 사용자 정보조회
         view.findViewById(R.id.btnInqrUserInfoPage).setOnClickListener(v -> {
@@ -156,7 +150,7 @@ public class SellerHomeFragment extends AbstractCenterAuthMainFragment {
         });
 
         // QR코드 생성
-        view.findViewById(R.id.btnCreateQRPage).setOnClickListener(v -> startFragment(my_menu.class, args, R.string.fragment_id_menu));
+        view.findViewById(R.id.btnCreateQRPage).setOnClickListener(v -> startFragment(MyMenuFragment.class, args, R.string.fragment_id_menu));
 
     }
 

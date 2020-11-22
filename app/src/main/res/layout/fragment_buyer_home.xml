@@ -16,14 +16,6 @@
 
 
     <Button
-        android:layout_marginTop="50dp"
-        android:id="@+id/btnAuthToken"
-        style="@style/Button01"
-        android:layout_width="280dp"
-        android:layout_height="50dp"
-        android:text="계좌등록"/>
-
-    <Button
         android:id="@+id/btnScanQRPage"
         style="@style/Button01"
         android:layout_width="280dp"
