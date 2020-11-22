@@ -4,13 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--    <include-->
-    <!--        android:id="@+id/appBarLayout"-->
-    <!--        layout="@layout/my_app_bar"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="메뉴 선택" />-->
-
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,23 +35,7 @@
                 android:maxLength="2"
                 android:text="0" />
 
-            <!--            <Button-->
-            <!--                android:id="@+id/btn1_1"-->
-            <!--                style="@style/TextViewAPIResult"-->
-            <!--                android:layout_width="0dp"-->
-            <!--                android:layout_weight="0.5"-->
-            <!--                android:gravity="center"-->
-            <!--                android:onClick="btnClick"-->
-            <!--                android:text="▲" />-->
 
-            <!--            <Button-->
-            <!--                android:id="@+id/btn1_2"-->
-            <!--                style="@style/TextViewAPIResult"-->
-            <!--                android:layout_width="0dp"-->
-            <!--                android:layout_weight="0.5"-->
-            <!--                android:gravity="center"-->
-            <!--                android:onClick="btnClick"-->
-            <!--                android:text="▼" />-->
         </TableRow>
 
         <TableRow android:padding="5dip">
@@ -198,15 +175,6 @@
         </TableRow>
 
         <TableRow android:padding="5dip">
-
-            <!--            <EditText-->
-            <!--                android:id="@+id/result"-->
-            <!--                style="@style/TextViewAPIResult"-->
-            <!--                android:layout_width="0dp"-->
-            <!--                android:layout_marginTop="30dp"-->
-            <!--                android:layout_weight="1"-->
-            <!--                android:gravity="center"-->
-            <!--                android:text="0" />-->
 
             <Button
                 android:id="@+id/btnPay"

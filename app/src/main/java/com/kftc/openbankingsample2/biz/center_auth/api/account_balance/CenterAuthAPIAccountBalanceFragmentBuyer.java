@@ -66,10 +66,9 @@ public class CenterAuthAPIAccountBalanceFragmentBuyer extends AbstractCenterAuth
         View.OnClickListener onClickListener = v -> showAccountDialog(etFintechUseNum);
         view.findViewById(R.id.btnSelectFintechUseNum).setOnClickListener(onClickListener);
 
-        //
+        // 잔액을 확인할 계좌 선택 후 "확인" 버튼을 눌렀을 경우
         view.findViewById(R.id.btnNext).setOnClickListener(v -> {
 
-            // 직전내용 저장
             // 은행거래고유번호
             String clientUseCode = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_USE_CODE);
             String randomUnique9String = Utils.getCurrentTime();    // 이용기관 부여번호를 임시로 시간데이터 사용
@@ -78,11 +77,13 @@ public class CenterAuthAPIAccountBalanceFragmentBuyer extends AbstractCenterAuth
             // 거래 일시
             String etTranDtime = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(new Date());
 
+            // access_token
             String accessToken =  CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_ACCESS_TOKEN);
             Utils.saveData(CenterAuthConst.CENTER_AUTH_ACCESS_TOKEN, accessToken);
+
+            // 핀테크 이용번호 (계좌번호)
             String fintechUseNum = etFintechUseNum.getText().toString();
             Utils.saveData(CenterAuthConst.CENTER_AUTH_FINTECH_USE_NUM, fintechUseNum);
-
 
             String userSeqNo = CenterAuthUtils.getSavedValueFromSetting(CenterAuthConst.CENTER_AUTH_CLIENT_USER_SEQ_NUM);
 
@@ -102,7 +103,7 @@ public class CenterAuthAPIAccountBalanceFragmentBuyer extends AbstractCenterAuth
                         startFragment(BuyerHomeFragment.class, args, R.string.fragment_id_buyer);
                     }));
         });
-        // 취소
+        // "취소" 버튼을 눌렀을 경우
         view.findViewById(R.id.btnCancel).setOnClickListener(v -> onBackPressed());
     }
 }
